@@ -146,8 +146,19 @@ const jobs = [
 const tabs=document.getElementById("tabs");
 const cards=document.getElementById("cards");
 
+// สร้างปุ่มเลือกสาย
+Object.keys(data).forEach(track=>{
+  const b=document.createElement("button");
+  b.textContent=track;
+  b.onclick=()=>{
+    tabs.style.display="none";
+    render(track);
+  };
+  tabs.appendChild(b);
+});
+
 function render(track){
-  cards.innerHTML="";
+  cards.innerHTML=`<h2 style="grid-column:1/-1;color:#1b7f3c">สาย: ${track}</h2>`;
   data[track].forEach(f=>{
     const div=document.createElement("div");
     div.className="card";
@@ -161,19 +172,11 @@ function render(track){
   });
 }
 
-Object.keys(data).forEach((k,i)=>{
-  const b=document.createElement("button");
-  b.textContent=k;
-  if(i==0){b.classList.add("active");render(k);}
-  b.onclick=()=>{
-    document.querySelectorAll(".tabs button").forEach(x=>x.classList.remove("active"));
-    b.classList.add("active");
-    render(k);
-  };
-  tabs.appendChild(b);
-});
+// ตอนแรกซ่อน cards
+cards.innerHTML = "<p style='text-align:center;color:#555'>👆 เลือกสายการเรียนก่อน</p>";
 </script>
 
 </body>
 </html>
+
 
