@@ -1,105 +1,101 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
 <title>University Guide for High School</title>
 <style>
-body {margin:0;font-family:sans-serif;background:#f4fff6;}
-header{display:flex;align-items:center;gap:12px;padding:12px 20px;background:#1b7f3c;color:white;}
-header img{height:48px;}
-header h1{font-size:1.4rem;margin:0;}
-.tabs{display:flex;flex-wrap:wrap;justify-content:center;background:#e8f5ec;padding:10px;}
-.tabs button{border:none;margin:5px;padding:8px 14px;border-radius:20px;background:white;cursor:pointer;font-size:0.9rem;}
-.tabs button.active{background:#1b7f3c;color:white;}
-.container{padding:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;}
-.card{background:white;border-radius:12px;padding:15px;box-shadow:0 2px 5px rgba(0,0,0,.1);text-align:center;}
-.card h3{margin-top:8px;color:#1b7f3c;font-size:1.05rem;}
-.card img.uni{height:32px;}
-.jobs{display:none;font-size:.9rem;color:#444;margin-top:8px;text-align:left;}
-.card button{margin-top:8px;border:none;background:#1b7f3c;color:white;padding:6px 10px;border-radius:10px;cursor:pointer;}
-@media(max-width:600px){
-header h1{font-size:1.1rem;}
-.card{font-size:0.95rem;}
+body{font-family:'Segoe UI',sans-serif;background:linear-gradient(120deg,#e0f2ff,#fefefe);text-align:center;padding:30px}
+header{background:#16a34a;color:#fff;padding:20px;border-radius:20px;box-shadow:0 10px 20px rgba(0,0,0,.15)}
+h1{margin:0;font-size:2.2em}
+select{padding:12px 18px;font-size:17px;border-radius:999px;border:2px solid #16a34a;background:#ecfdf5;color:#065f46;font-weight:600;cursor:pointer;box-shadow:0 4px 8px rgba(0,0,0,.1)}
+#results{margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:15px}
+.card{background:#fff;padding:15px;border-radius:18px;box-shadow:0 6px 12px rgba(0,0,0,.1);text-align:left;transition:.2s;animation:fadeUp .5s ease both}
+.card:hover{transform:translateY(-4px);box-shadow:0 10px 18px rgba(0,0,0,.15)}
+.logo{width:50px;height:50px;object-fit:contain;margin-right:10px}
+.row{display:flex;align-items:center}
+.back{margin:15px auto;display:none;background:#16a34a;color:white;border:none;padding:6px 14px;border-radius:999px;font-size:14px;cursor:pointer;box-shadow:0 4px 8px rgba(0,0,0,.1)}
+
+.fadeOut{animation:fadeOut .3s ease both}
+.fadeIn{animation:fadeIn .3s ease both}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:none}
+}
+@keyframes fadeOut{
+  from{opacity:1}
+  to{opacity:0}
+}
+@keyframes fadeIn{
+  from{opacity:0}
+  to{opacity:1}
 }
 </style>
 </head>
 <body>
 
-<header>
-  <img src="logo.png" alt="logo">
+<header id="header">
   <h1>University Guide for High School</h1>
+  <p>เลือกสาย ม.ปลาย เพื่อดูคณะที่เหมาะ</p>
+  <select id="stream">
+    <option value="">-- เลือกสาย ม.ปลาย --</option>
+    <option value="eng">เตรียมวิศวะ</option>
+    <option value="cs">วิทย์คอม</option>
+  </select>
 </header>
 
-<div class="tabs" id="tabs"></div>
-<div class="container" id="cards"></div>
+<button class="back" id="backBtn">⬅ ย้อนกลับ</button>
+<main id="results"></main>
 
 <script>
-const data = {
-"เตรียมวิศวะ":{
- "วิศวกรรมไฟฟ้า":["chula.ac.th","tu.ac.th","ku.ac.th","kmitl.ac.th"],
- "วิศวกรรมเครื่องกล":["chula.ac.th","tu.ac.th","kmutt.ac.th","kku.ac.th"],
- "วิศวกรรมโยธา":["ku.ac.th","tu.ac.th","kmitl.ac.th","psu.ac.th"],
- "วิศวกรรมคอมพิวเตอร์":["chula.ac.th","kmutt.ac.th","kmitl.ac.th","kku.ac.th"],
- "วิศวกรรมอุตสาหการ":["tu.ac.th","ku.ac.th","kku.ac.th","psu.ac.th"],
- "วิศวกรรมเคมี":["chula.ac.th","kmutt.ac.th","tu.ac.th","psu.ac.th"],
- "วิศวกรรมสิ่งแวดล้อม":["ku.ac.th","tu.ac.th","psu.ac.th","ubu.ac.th"],
- "วิศวกรรมยานยนต์":["kmitl.ac.th","kmutt.ac.th","psu.ac.th"],
- "วิศวกรรมพลังงาน":["kku.ac.th","ubu.ac.th","nu.ac.th"],
- "วิศวกรรมชีวการแพทย์":["mahidol.ac.th","chula.ac.th","nu.ac.th"]
-},
-"วิทย์คอม":{
- "วิทยาการคอมพิวเตอร์":["chula.ac.th","tu.ac.th","ku.ac.th","kku.ac.th"],
- "เทคโนโลยีสารสนเทศ":["mahidol.ac.th","kmitl.ac.th","psu.ac.th"],
- "ปัญญาประดิษฐ์":["chula.ac.th","kmutt.ac.th","tu.ac.th"],
- "วิทยาศาสตร์ข้อมูล":["tu.ac.th","ku.ac.th","kku.ac.th"],
- "ความมั่นคงไซเบอร์":["kmitl.ac.th","kmutt.ac.th"],
- "วิศวกรรมซอฟต์แวร์":["kmutt.ac.th","kmitl.ac.th","psu.ac.th"]
-}
+const guides={
+eng:[
+ {faculty:"วิศวกรรมเครื่องกล",university:"จุฬาลงกรณ์มหาวิทยาลัย",icon:"🛠️",desc:"ออกแบบเครื่องจักร ระบบกลไก การผลิต และพลังงาน"},
+ {faculty:"วิศวกรรมไฟฟ้า",university:"มจธ.",icon:"⚡",desc:"ระบบไฟฟ้า อิเล็กทรอนิกส์ และระบบควบคุม"},
+ {faculty:"วิศวกรรมโยธา",university:"เกษตรศาสตร์",icon:"🏗️",desc:"โครงสร้าง ถนน สะพาน และงานก่อสร้าง"}
+],
+cs:[
+ {faculty:"วิทยาการคอมพิวเตอร์",university:"ธรรมศาสตร์",icon:"💻",desc:"เขียนโปรแกรม อัลกอริทึม และ AI"},
+ {faculty:"เทคโนโลยีสารสนเทศ",university:"ลาดกระบัง",icon:"🖥️",desc:"เครือข่าย ฐานข้อมูล และความปลอดภัยไซเบอร์"}
+]
 };
 
-const tabs=document.getElementById("tabs");
-const cards=document.getElementById("cards");
+const sel=document.getElementById('stream');
+const res=document.getElementById('results');
+const back=document.getElementById('backBtn');
+const header=document.getElementById('header');
 
-function showTracks(){
- tabs.style.display="flex";
- cards.innerHTML="<p style='text-align:center'>👆 เลือกสายการเรียน</p>";
-}
-
-function showFaculties(track){
- tabs.style.display="none";
- cards.innerHTML=`<button onclick="showTracks()">⬅ ย้อนกลับ</button><h2>${track}</h2>`;
- Object.keys(data[track]).forEach(f=>{
-  const d=document.createElement("div");
-  d.className="card";
-  d.innerHTML=`<h3>${f}</h3><button onclick="showUnis('${track}','${f}')">ดูมหาลัย</button>`;
-  cards.appendChild(d);
- });
-}
-
-function showUnis(track,fac){
- cards.innerHTML=`<button onclick="showFaculties('${track}')">⬅ ย้อนกลับ</button><h2>${fac}</h2>`;
- data[track][fac].forEach(u=>{
-  const d=document.createElement("div");
-  d.className="card";
-  d.innerHTML=`<img class="uni" src="https://www.google.com/s2/favicons?domain=${u}&sz=64"><p>${u}</p>`;
-  cards.appendChild(d);
- });
-}
-
-// สร้างปุ่มสาย
-Object.keys(data).forEach(t=>{
- const b=document.createElement("button");
- b.textContent=t;
- b.onclick=()=>showFaculties(t);
- tabs.appendChild(b);
+sel.addEventListener('change',()=>{
+  if(!guides[sel.value])return;
+  header.classList.add('fadeOut');
+  setTimeout(()=>{
+    header.style.display='none';
+    header.classList.remove('fadeOut');
+    back.style.display='inline-block';
+    guides[sel.value].forEach(i=>{
+      const d=document.createElement('div');
+      d.className='card';
+      d.innerHTML=`
+        <h3>${i.icon} ${i.faculty}</h3>
+        <p><b>มหาวิทยาลัย:</b> ${i.university}</p>
+        <p><b>เรียนเกี่ยวกับ:</b> ${i.desc}</p>
+      `;
+      res.appendChild(d);
+    });
+  },300);
 });
 
-showTracks();
+back.addEventListener('click',()=>{
+  res.innerHTML='';
+  back.style.display='none';
+  header.style.display='block';
+  header.classList.add('fadeIn');
+  setTimeout(()=>header.classList.remove('fadeIn'),300);
+  sel.value='';
+});
 </script>
-  
+
 </body>
 </html>
-
 
 
