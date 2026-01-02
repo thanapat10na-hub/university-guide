@@ -8,7 +8,548 @@
   <link rel="icon" href="image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
   <style>
     body {
-…</html>
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(120deg, #e0f2ff, #fefefe);
+      text-align: center;
+      padding: 30px;
+    }
+    header {
+      background: #16a34a;
+      color: #fff;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,.15);
+    }
+    h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+    select {
+      padding: 12px 18px;
+      font-size: 17px;
+      border-radius: 999px;
+      border: 2px solid #16a34a;
+      background: #ecfdf5;
+      color: #065f46;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    #results {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 15px;
+    }
+    .card {
+      background: #fff;
+      padding: 15px;
+      border-radius: 18px;
+      box-shadow: 0 6px 12px rgba(0,0,0,.1);
+      text-align: left;
+      animation: fadeUp .4s ease both;
+    }
+    .back {
+      margin: 15px auto;
+      display: none;
+      background: #16a34a;
+      color: white;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .toggle {
+      margin-top: 8px;
+      background: #ecfdf5;
+      border: 1px solid #16a34a;
+      color: #065f46;
+      border-radius: 999px;
+      padding: 6px 14px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .unilist {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .4s ease;
+      padding-left: 18px;
+    }
+    .unilist.open {
+      max-height: 600px;
+      margin-top: 8px;
+    }
+    .logo {
+      width: 26px;
+      height: 26px;
+      object-fit: contain;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+    .fadeOut {
+      animation: fadeOut .3s both;
+    }
+    .fadeIn {
+      animation: fadeIn .3s both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: none; }
+    }
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    ul {
+      padding-left: 18px;
+      margin: 6px 0;
+    }
+    .unilist a {
+      color: #0d9488;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .unilist a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<header id="header">
+  <h1>🎓 University Guide for High School</h1>
+  <p>เลือกสายการเรียน ม.ปลาย</p>
+  <select id="stream">
+    <option value="">-- เลือกสาย --</option>
+    <option value="eng">⚙️ เตรียมวิศวะ</option>
+    <option value="cs">💻 วิทย์คอม</option>
+    <option value="sci">🔬 วิทย์–คณิต</option>
+    <option value="mathlang">📐 คณิต–ภาษา</option>
+    <option value="jp">🇯🇵 ศิลป์–ญี่ปุ่น</option>
+    <option value="cn">🇨🇳 ศิลป์–จีน</option>
+    <option value="kr">🇰🇷 ศิลป์–เกาหลี</option>
+    <option value="soc">🏛️ ไทย–สังคม</option>
+  </select>
+</header>
+
+<button class="back" id="backBtn">⬅ ย้อนกลับ</button>
+<main id="results"></main>
+
+<script>
+const data = {
+  eng: [
+    {emoji:"🛠️",name:"วิศวกรรมเครื่องกล",about:"ออกแบบเครื่องจักรและพลังงาน",jobs:["วิศวกรเครื่องกล","วิศวกรโรงงาน","วิศวกรยานยนต์"],universities:[
+      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
+      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
+      {name:"ม.เกษตรศาสตร์",url:"https://www.ku.ac.th"},
+      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"},
+      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"},
+      {name:"KMITL",url:"https://www.kmitl.ac.th"},
+      {name:"KMUTT",url:"https://www.kmutt.ac.th"}
+    ]},
+    {emoji:"⚡",name:"วิศวกรรมไฟฟ้า",about:"ระบบไฟฟ้าและพลังงาน",jobs:["วิศวกรไฟฟ้า","Automation Engineer","Energy Engineer"],universities:[
+      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
+      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
+      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"},
+      {name:"ม.เกษตรศาสตร์",url:"https://www.ku.ac.th"},
+      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"}
+    ]},
+    {emoji:"🏗️",name:"วิศวกรรมโยธา",about:"โครงสร้างและก่อสร้าง",jobs:["วิศวกรโยธา","Site Engineer","Project Engineer"],universities:[
+      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
+      {name:"ม.เกษตรศาสตร์",url:"https://www.ku.ac.th"},
+      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"},
+      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"},
+      {name:"KMUTNB",url:"https://www.kmutnb.ac.th"}
+    ]},
+    {emoji:"💻",name:"วิศวกรรมคอมพิวเตอร์",about:"ระบบฮาร์ดแวร์/ซอฟต์แวร์",jobs:["Computer Engineer","Embedded Engineer","System Engineer"],universities:[
+      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
+      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
+      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"},
+      {name:"KMITL",url:"https://www.kmitl.ac.th"},
+      {name:"KMUTT",url:"https://www.kmutt.ac.th"}
+    ]},
+    {emoji:"🌱",name:"วิศวกรรมสิ่งแวดล้อม",about:"จัดการสิ่งแวดล้อมและของเสีย",jobs:["Environmental Engineer","Sustainability Officer","Consultant"],universities:[
+      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
+      {name:"ม.เกษตรศาสตร์",url:"https://www.ku.ac.th"},
+      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"},
+      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"}
+    ]},
+    {emoji:"🔋",name:"วิศวกรรมพลังงาน",about:"พลังงานทดแทนและระบบพลังงาน",jobs:["Energy Engineer","Solar Engineer","Power Analyst"],universities:[
+      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
+      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"},
+      {name:"ม.เทคโนโลยีสุรนารี",url:"https://www.sut.ac.th"},
+      {name:"KMUTT",url:"https://www.kmutt.ac.th"}
+    ]}
+  ],
+
+  cs: [
+    {emoji:"💻",name:"วิทยาการคอมพิวเตอร์",about:"เขียนโปรแกรมและ AI",jobs:["Software Engineer","Backend Dev","AI Engineer"],universities:[
+      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
+      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"},
+      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"},
+      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"},
+      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
+      {name:"KMITL",url:"https://www.kmitl.ac.th"},
+      {name:"ABAC",url:"https://www.abac.ac.th"}
+    ]},
+    {emoji:"📊",name:"วิทยาการข้อมูล",about:"วิเคราะห์ข้อมูลและ ML",jobs:["Data Scientist","Data Analyst","ML Engineer"],universities:[
+      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"},
+      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"},
+      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"},
+      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
+      {name:"DPU",url:"https://www.dpu.ac.th"}
+    ]},
+    {emoji:"🔐",name:"ความปลอดภัยไซเบอร์",about:"ป้องกันระบบและข้อมูล",jobs:["Cybersecurity","SOC Analyst","Security Engineer"],universities:[
+      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"},
+      {name:"KMITL",url:"https://www.kmitl.ac.th"},
+      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"},
+      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
+      {name:"DPU",url:"https://www.dpu.ac.th"}
+    ]},
+    {emoji:"🤖",name:"ปัญญาประดิษฐ์",about:"Machine Learning & Robotics",jobs:["AI Engineer","Researcher","ML Ops"],universities:[
+      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"},
+      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
+      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"},
+      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"}
+    ]},
+    {emoji:"🎮",name:"เกมและสื่อดิจิทัล",about:"พัฒนาเกมและแอนิเมชัน",jobs:["Game Dev","Game Artist","Game Designer"],universities:[
+      {name:"ม.ศิลปากร",url:"https://www.su.ac.th"},
+      {name:"ม.รังสิต",url:"https://www.rsu.ac.th"},
+      {name:"ABAC",url:"https://www.abac.ac.th"},
+      {name:"DPU",url:"https://www.dpu.ac.th"},
+      {name:"ม.ธุรกิจบัณฑิตย์",url:"https://www.dpu.ac.th"}
+    ]},
+    {emoji:"🖥️",name:"เทคโนโลยีสารสนเทศ",about:"ระบบ IT และเครือข่าย",jobs:["IT Support","System Admin","Network Admin"],universities:[
+      {name:"ม.เกษตรศาสตร์",url:"https://www.ku.ac.th"},
+      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"},
+      {name:"KMUTNB",url:"https://www.kmutnb.ac.th"},
+      {name:"DPU",url:"https://www.dpu.ac.th"},
+      {name:"ABAC",url:"https://www.abac.ac.th"}
+    ]}
+  ],
+
+  sci: [
+    {emoji:"⚕️",name:"แพทยศาสตร์",about:"รักษาโรคและการแพทย์",jobs:["แพทย์","นักวิจัยแพทย์","อาจารย์แพทย์"],universities:[
+      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
+      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"},
+      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"},
+      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"},
+      {name:"ม.สงขลานครินทร์",url:"https://www.psu.ac.th"}
+    ]},
+    {emoji:"💊",name:"เภสัชศาสตร์",about:"ยาและวิทยาศาสตร์ชีวภาพ",jobs:["เภสัชกร","นักวิจัยยา","Regulatory Affairs"],universities:[
+      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"},
+      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
+      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"},
+      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"}
+    ]},
+    {emoji:"🔬",name:"วิทยาศาสตร์ (สาขาต่างๆ)",about:"ฟิสิกส์, เคมี, ชีววิทยา",jobs:["นักวิจัย","นักวิเคราะห์","อาจารย์"],universities:[
+      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
+      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"},
+      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"},
+      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"},
+      {name:"ม.เกษตรศาสตร์",url:"https://www.ku.ac.th"}
+    ]},
+    {emoji:"🧪",name:"วิทยาศาสตร์การแพทย์",about:"เทคนิคการแพทย์และชันสูตร",jobs:["นักเทคนิคการแพทย์","Lab Supervisor","Researcher"],universities:[
+      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"},
+      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"},
+      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"},
+      {name:"ม.สงขลานครินทร์",url:"https://www.psu.ac.th"}
+    ]},
+    {emoji:"🦷",name:"ทันตแพทยศาสตร์",about:"ทันตกรรมและการดูแลช่องปาก",jobs:["ทันตแพทย์","นักวิจัยทันตกรรม"],universities:[
+      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
+      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"},
+      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"},
+      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"}
+    ]},
+    {emoji:"🧬",name:"ชีววิทยา/ชีวเทคโนโลยี",about:"พันธุกรรมและเทคโนโลยีชีวภาพ",jobs:["Biotech Researcher","QC/QA","Bioinformatician"],universities:[
+      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"},
+      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
+      {name:"ม.เกษตรศาสตร์",url:"https://www.ku.ac.th"},
+      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"}
+    ]},
+    // ✅ เพิ่มใหม่ใน sci: วิศวะ
+    {emoji:"🏗️",name:"วิศวกรรมโยธา",about:"ออกแบบโครงสร้างและก่อสร้าง",jobs:["วิศวกรโยธา","Project Manager","Site Engineer"],universities:[
+      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
+      {name:"ม.เกษตรศาสตร์",url:"https://www.ku.ac.th"},
+      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"},
+      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"},
+      {name:"KMUTNB",url:"https://www.kmutnb.ac.th"}
+    ]},
+    {emoji:"⚡",name:"วิศวกรรมไฟฟ้า",about:"ระบบไฟฟ้าและพลังงาน",jobs:["วิศวกรไฟฟ้า","Power Engineer","Automation Engineer"],universities:[
+      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
+      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"},
+      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"},
+      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"},
+      {name:"KMUTT",url:"https://www.kmutt.ac.th"}
+    ]},
+    {emoji:"🛠️",name:"วิศวกรรมเครื่องกล",about:"เครื่องจักร พลังงาน และยานยนต์",jobs:["Mechanical Engineer","Design Engineer","R&D Engineer"],universities:[
+      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
+      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"},
+      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"},
+      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"},
+      {name:"KMUTNB",url:"https://www.kmutnb.ac.th"}
+    ]}
+  ],
+
+  mathlang: [
+    {emoji:"📈",name:"คณิตศาสตร์ประยุกต์",about:"คณิตสำหรับธุรกิจและการเงิน",jobs:["Actuary","Quant Analyst","Data Modeler"],universities:[
+      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
+      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"},
+      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
+      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"}
+    ]},
+    {emoji:"💰",name:"เศรษฐศาสตร์",about:"เศรษฐกิจและนโยบาย",jobs:["นักเศรษฐศาสตร์","Policy Analyst","Researcher"],universities:[
+      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
+      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
+      {name:"ม.เกษตรศาสตร์",url:"https://www.ku.ac.th"},
+      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"}
+    ]},
+    {emoji:"📊",name:"สถิติ",about:"วิเคราะห์ข้อมูลเชิงลึก",jobs:["Statistician","Data Analyst","Survey Designer"],universities:[
+      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
+      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"},
+      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"},
+      {name:"ม.เกษตรศาสตร์",url:"https://www.ku.ac.th"}
+    ]},
+    {emoji:"🏦",name:"บริหารธุรกิจ (BBA)",about:"บริหารและกลยุทธ์",jobs:["ผู้จัดการ","นักการเงิน","Marketing"],universities:[
+      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
+      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
+      {name:"ABAC",url:"https://www.abac.ac.th"},
+      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"}
+    ]},
+    {emoji:"✈️",name:"การท่องเที่ยวและโรงแรม",about:"บริการและการจัดการ",jobs:["Tour Manager","Hotel Manager","Event Planner"],universities:[
+      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
+      {name:"ม.บูรพา",url:"https://www.buu.ac.th"},
+      {name:"ม.แม่โจ้",url:"https://www.mju.ac.th"},
+      {name:"DPU",url:"https://www.dpu.ac.th"}
+    ]},
+    {emoji:"🌍",name:"ความสัมพันธ์ระหว่างประเทศ",about:"การทูตและโลกศึกษา",jobs:["นักการทูต","นักวิเคราะห์นโยบาย","NGO Officer"],universities:[
+      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
+      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
+      {name:"ม.เกษตรศาสตร์",url:"https://www.ku.ac.th"},
+      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"}
+    ]}
+  ],
+
+  jp: [
+    {emoji:"🎌",name:"ภาษาญี่ปุ่นธุรกิจ",about:"ภาษาญี่ปุ่น + ธุรกิจ",jobs:["ล่าม","นักการตลาด","ผู้ประสานงาน"],universities:[
+      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
+      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
+      {name:"ม.ศิลปากร",url:"https://www.su.ac.th"},
+      {name:"ม.บูรพา",url:"https://www.buu.ac.th"},
+      {name:"ม.แม่ฟ้าหลวง",url:"https://www.mfu.ac.th"}
+    ]},
+    {emoji:"🏯",name:"ญี่ปุ่นศึกษา",about:"ภาษาและวัฒนธรรม",jobs:["นักวิจัย","อาจารย์","นักแปล"],universities:[
+      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
+      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
+      {name:"ม.ศิลปากร",url:"https://www.su.ac.th"},
+      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"}
+    ]},
+    {emoji:"💼",name:"ธุรกิจระหว่างประเทศ",about:"ธุรกิจข้ามชาติ",jobs:["Export Officer","Marketing","Trader"],universities:[
+      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
+      {name:"ABAC",url:"https://www.abac.ac.th"},
+      {name:"DPU",url:"https://www.dpu.ac.th"},
+      {name:"ม.ศรีนครินทรวิโรฒ",url:"https://www.swu.ac.th"}
+    ]},
+    {emoji:"✈️",name:"การท่องเที่ยว",about:"การท่องเที่ยวและบริการ",jobs:["Tour Manager","Guide","Airline Staff"],universities:[
+      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
+      {name:"ม.บูรพา",url:"https://www.buu.ac.th"},
+      {name:"ม.แม่โจ้",url:"https://www.mju.ac.th"},
+      {name:"DPU",url:"https://www.dpu.ac.th"}
+    ]},
+    {emoji:"📺",name:"สื่อสารมวลชน",about:"สื่อและการประชาสัมพันธ์",jobs:["Content Creator","PR","Journalist"],universities:[
+      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
+      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
+      {name:"ม.ศรีนครินทรวิโรฒ",url:"https://www.swu.ac.th"},
+      {name:"ม.กรุงเทพ",url:"https://www.bu.ac.th"}
+    ]},
+    {emoji:"🎨",name:"ออกแบบนิเทศศิลป์",about:"ออกแบบสื่อ",jobs:["Graphic Designer","Illustrator","UX Designer"],universities:[
+      {name:"ม.ศิลปากร",url:"https://www.su.ac.th"},
+      {name:"ม.รังสิต",url:"https://www.rsu.ac.th"},
+      {name:"ม.กรุงเทพ",url:"https://www.bu.ac.th"},
+      {name:"ABAC",url:"https://www.abac.ac.th"}
+    ]}
+  ],
+
+  cn: [
+    {emoji:"🐉",name:"ภาษาจีนธุรกิจ",about:"ภาษาจีน + การค้า",jobs:["ล่าม","นักการตลาดจีน","Trader"],universities:[
+      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
+      {name:"ม.ศิลปากร",url:"https://www.su.ac.th"},
+      {name:"ม.บูรพา",url:"https://www.buu.ac.th"},
+      {name:"ม.แม่ฟ้าหลวง",url:"https://www.mfu.ac.th"}
+    ]},
+    {emoji:"🏮",name:"จีนศึกษา",about:"ภาษาและวัฒนธรรม",jobs:["นักวิจัย","อาจารย์","นักแปล"],universities:[
+      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
+      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
+      {name:"ม.ศิลปากร",url:"https://www.su.ac.th"}
+    ]},
+    {emoji:"📦",name:"โลจิสติกส์",about:"การขนส่งและซัพพลายเชน",jobs:["Logistics","Planner","Supply Officer"],universities:[
+      {name:"ม.บูรพา",url:"https://www.buu.ac.th"},
+      {name:"ม.เทคโนโลยีพระจอมเกล้าธนบุรี",url:"https://www.kmutt.ac.th"},
+      {name:"DPU",url:"https://www.dpu.ac.th"},
+      {name:"ม.ศรีนครินทรวิโรฒ",url:"https://www.swu.ac.th"}
+    ]},
+    {emoji:"💼",name:"ธุรกิจระหว่างประเทศ",about:"การค้าระหว่างประเทศ",jobs:["Export","Import","Trade Officer"],universities:[
+      {name:"ABAC",url:"https://www.abac.ac.th"},
+      {name:"DPU",url:"https://www.dpu.ac.th"},
+      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
+      {name:"ม.ศรีนครินทรวิโรฒ",url:"https://www.swu.ac.th"}
+    ]},
+    {emoji:"📺",name:"นิเทศศาสตร์",about:"สื่อและการประชาสัมพันธ์",jobs:["PR","Content","Journalist"],universities:[
+      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
+      {name:"ม.ศรีนครินทรวิโรฒ",url:"https://www.swu.ac.th"},
+      {name:"ม.กรุงเทพ",url:"https://www.bu.ac.th"},
+      {name:"ABAC",url:"https://www.abac.ac.th"}
+    ]},
+    {emoji:"🎨",name:"ออกแบบสื่อ",about:"สื่อสร้างสรรค์",jobs:["Designer","Animator","Media Creator"],universities:[
+      {name:"ม.รังสิต",url:"https://www.rsu.ac.th"},
+      {name:"ม.กรุงเทพ",url:"https://www.bu.ac.th"},
+      {name:"ABAC",url:"https://www.abac.ac.th"},
+      {name:"DPU",url:"https://www.dpu.ac.th"}
+    ]}
+  ],
+
+  kr: [
+    {emoji:"🎤",name:"ภาษาเกาหลี",about:"ภาษาและวัฒนธรรมเกาหลี",jobs:["ล่าม","นักแปล","Content Creator"],universities:[
+      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
+      {name:"ม.ศิลปากร",url:"https://www.su.ac.th"},
+      {name:"ม.บูรพา",url:"https://www.buu.ac.th"},
+      {name:"ม.แม่ฟ้าหลวง",url:"https://www.mfu.ac.th"}
+    ]},
+    {emoji:"📺",name:"เกาหลีศึกษา",about:"สื่อและวัฒนธรรม",jobs:["Researcher","Journalist","Producer"],universities:[
+      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
+      {name:"ม.ศิลปากร",url:"https://www.su.ac.th"}
+    ]},
+    {emoji:"💄",name:"อุตสาหกรรมความงาม",about:"เครื่องสำอางและแฟชั่น",jobs:["Brand Manager","Product Dev","Marketing"],universities:[
+      {name:"ม.กรุงเทพ",url:"https://www.bu.ac.th"},
+      {name:"ม.รังสิต",url:"https://www.rsu.ac.th"},
+      {name:"ม.ศรีปทุม",url:"https://www.spu.ac.th"}
+    ]},
+    {emoji:"🎬",name:"ภาพยนตร์และสื่อดิจิทัล",about:"ผลิตสื่อ",jobs:["Video Editor","Director","Producer"],universities:[
+      {name:"ม.รังสิต",url:"https://www.rsu.ac.th"},
+      {name:"ม.กรุงเทพ",url:"https://www.bu.ac.th"},
+      {name:"ABAC",url:"https://www.abac.ac.th"},
+      {name:"ม.ศรีปทุม",url:"https://www.spu.ac.th"}
+    ]},
+    {emoji:"🎨",name:"ออกแบบแฟชั่น",about:"ออกแบบเสื้อผ้า",jobs:["Fashion Designer","Stylist","Merchandiser"],universities:[
+      {name:"ม.ศิลปากร",url:"https://www.su.ac.th"},
+      {name:"ม.รังสิต",url:"https://www.rsu.ac.th"},
+      {name:"ม.กรุงเทพ",url:"https://www.bu.ac.th"}
+    ]},
+    {emoji:"💼",name:"ธุรกิจระหว่างประเทศ",about:"ธุรกิจข้ามชาติ",jobs:["Trader","Export","Marketing"],universities:[
+      {name:"ABAC",url:"https://www.abac.ac.th"},
+      {name:"DPU",url:"https://www.dpu.ac.th"},
+      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
+      {name:"ม.ศรีนครินทรวิโรฒ",url:"https://www.swu.ac.th"}
+    ]}
+  ],
+
+  soc: [
+    {emoji:"⚖️",name:"นิติศาสตร์",about:"กฎหมาย",jobs:["ทนาย","นิติกร","ที่ปรึกษากฎหมาย"],universities:[
+      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
+      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
+      {name:"ม.รามคำแหง",url:"https://www.ramkhamhaeng.ac.th"},
+      {name:"ม.เกษตรศาสตร์",url:"https://www.ku.ac.th"}
+    ]},
+    {emoji:"🏛️",name:"รัฐศาสตร์",about:"การเมืองและการปกครอง",jobs:["นักการทูต","นักวิเคราะห์","ข้าราชการ"],universities:[
+      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
+      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
+      {name:"ม.เกษตรศาสตร์",url:"https://www.ku.ac.th"},
+      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"}
+    ]},
+    {emoji:"📚",name:"สังคมสงเคราะห์",about:"ช่วยเหลือสังคม",jobs:["Social Worker","NGO","Community Officer"],universities:[
+      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
+      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
+      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"},
+      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"}
+    ]},
+    {emoji:"📰",name:"นิเทศศาสตร์",about:"สื่อสารมวลชน",jobs:["Journalist","PR","Content"],universities:[
+      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
+      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
+      {name:"ม.ศรีนครินทรวิโรฒ",url:"https://www.swu.ac.th"},
+      {name:"ม.กรุงเทพ",url:"https://www.bu.ac.th"}
+    ]},
+    {emoji:"🏫",name:"ครุศาสตร์",about:"ครูและการศึกษา",jobs:["ครู","Trainer","Tutor"],universities:[
+      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
+      {name:"ม.ศรีนครินทรวิโรฒ",url:"https://www.swu.ac.th"},
+      {name:"ม.เกษตรศาสตร์",url:"https://www.ku.ac.th"},
+      {name:"ม.ราชภัฏทั่วประเทศ",url:"https://www.mrqs.moe.go.th"}
+    ]},
+    {emoji:"🌏",name:"ภูมิศาสตร์",about:"พื้นที่และสิ่งแวดล้อม",jobs:["Urban Planner","GIS","Researcher"],universities:[
+      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
+      {name:"ม.เกษตรศาสตร์",url:"https://www.ku.ac.th"},
+      {name:"ม.บูรพา",url:"https://www.buu.ac.th"},
+      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"}
+    ]}
+  ]
+};
+
+const sel = document.getElementById("stream");
+const res = document.getElementById("results");
+const back = document.getElementById("backBtn");
+const header = document.getElementById("header");
+
+sel.onchange = () => {
+  if (!data[sel.value]) return;
+  header.classList.add("fadeOut");
+  setTimeout(() => {
+    header.style.display = "none";
+    back.style.display = "inline-block";
+    res.innerHTML = ""; // ล้างก่อนเสมอ
+    data[sel.value].forEach(f => {
+      const d = document.createElement("div");
+      d.className = "card";
+      d.innerHTML = `
+        <h3>${f.emoji} ${f.name}</h3>
+        <p><b>เรียนเกี่ยวกับ:</b> ${f.about}</p>
+        <p><b>อาชีพในอนาคต:</b></p>
+        <ul>${f.jobs.map(j => `<li>${j}</li>`).join("")}</ul>
+        <button class="toggle" onclick="toggleUni(this)">📍 ดูมหาวิทยาลัยที่เปิดสอน</button>
+        <div class="unilist">
+          <ul>${f.universities.map(u => `<li>🎓 <a href="${u.url}" target="_blank">${u.name}</a></li>`).join("")}</ul>
+        </div>
+      `;
+      res.appendChild(d);
+    });
+  }, 300);
+};
+
+back.onclick = () => {
+  res.innerHTML = "";
+  back.style.display = "none";
+  header.style.display = "block";
+  header.classList.remove("fadeOut");
+  header.classList.add("fadeIn");
+  setTimeout(() => header.classList.remove("fadeIn"), 300);
+  sel.value = "";
+};
+
+function toggleUni(btn) {
+  const list = btn.nextElementSibling;
+  const isOpen = list.classList.contains('open');
+  
+  // ซ่อนทุก unilist ก่อน
+  document.querySelectorAll('.unilist').forEach(el => {
+    el.classList.remove('open');
+    el.style.maxHeight = '0px';
+  });
+  
+  if (!isOpen) {
+    list.classList.add('open');
+    list.style.maxHeight = list.scrollHeight + 'px';
+  } else {
+    list.classList.remove('open');
+    list.style.maxHeight = '0px';
+  }
+}
+</script>
+
+</body>
+</html>
+
 
 
 
