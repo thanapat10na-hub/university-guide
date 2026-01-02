@@ -14,13 +14,15 @@ select{padding:12px 18px;font-size:17px;border-radius:999px;border:2px solid #16
 .toggle{margin-top:8px;background:#ecfdf5;border:1px solid #16a34a;color:#065f46;border-radius:999px;padding:6px 14px;cursor:pointer;font-size:14px}
 .unilist{max-height:0;overflow:hidden;transition:max-height .4s ease;padding-left:18px}
 .unilist.open{max-height:500px;margin-top:8px}
-.logo{width:26px;height:26px;object-fit:contain;vertical-align:middle;margin-right:6px}
+.logo{width:26px;height:26px;object-fit:contain;vertical-align:middle;margin-right:6px;border-radius:4px}
 .fadeOut{animation:fadeOut .3s both}
 .fadeIn{animation:fadeIn .3s both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 @keyframes fadeOut{from{opacity:1}to{opacity:0}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 ul{padding-left:18px;margin:6px 0}
+.uni-list li{display:flex;align-items:center;margin-bottom:6px}
+.uni-list img{margin-right:8px}
 </style>
 </head>
 <body>
@@ -47,58 +49,26 @@ ul{padding-left:18px;margin:6px 0}
 <script>
 const data = {
 eng:[
- {emoji:"🛠️",name:"วิศวกรรมเครื่องกล",about:"ออกแบบเครื่องจักรและพลังงาน",jobs:["วิศวกรเครื่องกล","วิศวกรโรงงาน","วิศวกรยานยนต์"],universities:[]},
- {emoji:"⚡",name:"วิศวกรรมไฟฟ้า",about:"ระบบไฟฟ้าและพลังงาน",jobs:["วิศวกรไฟฟ้า","Automation Engineer","Energy Engineer"],universities:[]},
- {emoji:"🏗️",name:"วิศวกรรมโยธา",about:"โครงสร้างและก่อสร้าง",jobs:["วิศวกรโยธา","Site Engineer","Project Engineer"],universities:[]},
- {emoji:"💻",name:"วิศวกรรมคอมพิวเตอร์",about:"ระบบคอมพิวเตอร์",jobs:["Computer Engineer","Embedded Engineer","System Engineer"],universities:[]},
- {emoji:"🌱",name:"วิศวกรรมสิ่งแวดล้อม",about:"จัดการสิ่งแวดล้อม",jobs:["Environmental Engineer","Sustainability Officer","Consultant"],universities:[]},
- {emoji:"🔋",name:"วิศวกรรมพลังงาน",about:"พลังงานทดแทน",jobs:["Energy Engineer","Solar Engineer","Power Analyst"],universities:[]}
-],
-
+ {emoji:"🛠️",name:"วิศวกรรมเครื่องกล",about:"ออกแบบเครื่องจักรและพลังงาน",jobs:["วิศวกรเครื่องกล","วิศวกรโรงงาน","วิศวกรยานยนต์"],
+ universities:[
+   {name:"จุฬาลงกรณ์มหาวิทยาลัย",logo:"https://upload.wikimedia.org/wikipedia/en/5/53/Chulalongkorn_University_Logo.png",location:"กรุงเทพมหานคร"},
+   {name:"มหาวิทยาลัยธรรมศาสตร์",logo:"https://upload.wikimedia.org/wikipedia/en/3/3b/Thammasat_University_Logo.png",location:"ปทุมธานี"},
+   {name:"มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี",logo:"https://upload.wikimedia.org/wikipedia/en/8/87/KMUTT_Logo.png",location:"กรุงเทพมหานคร"},
+   {name:"มหาวิทยาลัยเชียงใหม่",logo:"https://upload.wikimedia.org/wikipedia/en/f/f3/Chiang_Mai_University_Logo.png",location:"เชียงใหม่"},
+   {name:"มหาวิทยาลัยแม่ฟ้าหลวง",logo:"https://upload.wikimedia.org/wikipedia/en/f/f3/Mae_Fah_Luang_University_Logo.png",location:"เชียงราย"}
+ ]
+},
+// ตัวอย่างสำหรับสาย CS
 cs:[
- {emoji:"💻",name:"วิทยาการคอมพิวเตอร์",about:"เขียนโปรแกรมและ AI",jobs:["Software Engineer","Backend Dev","AI Engineer"],universities:[]},
- {emoji:"📊",name:"วิทยาการข้อมูล",about:"วิเคราะห์ข้อมูล",jobs:["Data Scientist","Data Analyst","ML Engineer"],universities:[]},
- {emoji:"🔐",name:"ความปลอดภัยไซเบอร์",about:"ป้องกันระบบ",jobs:["Cybersecurity","SOC Analyst","Security Engineer"],universities:[]},
- {emoji:"🤖",name:"ปัญญาประดิษฐ์",about:"Machine Learning",jobs:["AI Engineer","Researcher","ML Ops"],universities:[]},
- {emoji:"🎮",name:"เกมและสื่อดิจิทัล",about:"พัฒนาเกม",jobs:["Game Dev","Game Artist","Game Designer"],universities:[]},
- {emoji:"🖥️",name:"เทคโนโลยีสารสนเทศ",about:"ระบบ IT",jobs:["IT Support","System Admin","Network Admin"],universities:[]}
-],
-
-jp:[
- {emoji:"🎌",name:"ภาษาญี่ปุ่นธุรกิจ",about:"ภาษาญี่ปุ่น + ธุรกิจ",jobs:["ล่าม","นักการตลาด","ผู้ประสานงาน"],universities:[]},
- {emoji:"🏯",name:"ญี่ปุ่นศึกษา",about:"ภาษาและวัฒนธรรม",jobs:["นักวิจัย","อาจารย์","นักแปล"],universities:[]},
- {emoji:"💼",name:"ธุรกิจระหว่างประเทศ",about:"ธุรกิจข้ามชาติ",jobs:["Export Officer","Marketing","Trader"],universities:[]},
- {emoji:"✈️",name:"การท่องเที่ยว",about:"การท่องเที่ยวและบริการ",jobs:["Tour Manager","Guide","Airline Staff"],universities:[]},
- {emoji:"📺",name:"สื่อสารมวลชน",about:"สื่อและการประชาสัมพันธ์",jobs:["Content Creator","PR","Journalist"],universities:[]},
- {emoji:"🎨",name:"ออกแบบนิเทศศิลป์",about:"ออกแบบสื่อ",jobs:["Graphic Designer","Illustrator","UX Designer"],universities:[]}
-],
-
-cn:[
- {emoji:"🐉",name:"ภาษาจีนธุรกิจ",about:"ภาษาจีน + การค้า",jobs:["ล่าม","นักการตลาดจีน","Trader"],universities:[]},
- {emoji:"🏮",name:"จีนศึกษา",about:"ภาษาและวัฒนธรรม",jobs:["นักวิจัย","อาจารย์","นักแปล"],universities:[]},
- {emoji:"📦",name:"โลจิสติกส์",about:"การขนส่งและซัพพลายเชน",jobs:["Logistics","Planner","Supply Officer"],universities:[]},
- {emoji:"💼",name:"ธุรกิจระหว่างประเทศ",about:"การค้าระหว่างประเทศ",jobs:["Export","Import","Trade Officer"],universities:[]},
- {emoji:"📺",name:"นิเทศศาสตร์",about:"สื่อและการประชาสัมพันธ์",jobs:["PR","Content","Journalist"],universities:[]},
- {emoji:"🎨",name:"ออกแบบสื่อ",about:"สื่อสร้างสรรค์",jobs:["Designer","Animator","Media Creator"],universities:[]}
-],
-
-kr:[
- {emoji:"🎤",name:"ภาษาเกาหลี",about:"ภาษาและวัฒนธรรมเกาหลี",jobs:["ล่าม","นักแปล","Content Creator"],universities:[]},
- {emoji:"📺",name:"เกาหลีศึกษา",about:"สื่อและวัฒนธรรม",jobs:["Researcher","Journalist","Producer"],universities:[]},
- {emoji:"💄",name:"อุตสาหกรรมความงาม",about:"เครื่องสำอางและแฟชั่น",jobs:["Brand Manager","Product Dev","Marketing"],universities:[]},
- {emoji:"🎬",name:"ภาพยนตร์และสื่อดิจิทัล",about:"ผลิตสื่อ",jobs:["Video Editor","Director","Producer"],universities:[]},
- {emoji:"🎨",name:"ออกแบบแฟชั่น",about:"ออกแบบเสื้อผ้า",jobs:["Fashion Designer","Stylist","Merchandiser"],universities:[]},
- {emoji:"💼",name:"ธุรกิจระหว่างประเทศ",about:"ธุรกิจข้ามชาติ",jobs:["Trader","Export","Marketing"],universities:[]}
-],
-
-soc:[
- {emoji:"⚖️",name:"นิติศาสตร์",about:"กฎหมาย",jobs:["ทนาย","นิติกร","ที่ปรึกษากฎหมาย"],universities:[]},
- {emoji:"🏛️",name:"รัฐศาสตร์",about:"การเมืองและการปกครอง",jobs:["นักการทูต","นักวิเคราะห์","ข้าราชการ"],universities:[]},
- {emoji:"📚",name:"สังคมสงเคราะห์",about:"ช่วยเหลือสังคม",jobs:["Social Worker","NGO","Community Officer"],universities:[]},
- {emoji:"📰",name:"นิเทศศาสตร์",about:"สื่อสารมวลชน",jobs:["Journalist","PR","Content"],universities:[]},
- {emoji:"🏫",name:"ครุศาสตร์",about:"ครูและการศึกษา",jobs:["ครู","Trainer","Tutor"],universities:[]},
- {emoji:"🌏",name:"ภูมิศาสตร์",about:"พื้นที่และสิ่งแวดล้อม",jobs:["Urban Planner","GIS","Researcher"],universities:[]}
-]
+ {emoji:"💻",name:"วิทยาการคอมพิวเตอร์",about:"เขียนโปรแกรมและ AI",jobs:["Software Engineer","Backend Dev","AI Engineer"],
+ universities:[
+   {name:"จุฬาลงกรณ์มหาวิทยาลัย",logo:"https://upload.wikimedia.org/wikipedia/en/5/53/Chulalongkorn_University_Logo.png",location:"กรุงเทพมหานคร"},
+   {name:"มหาวิทยาลัยธรรมศาสตร์",logo:"https://upload.wikimedia.org/wikipedia/en/3/3b/Thammasat_University_Logo.png",location:"ปทุมธานี"},
+   {name:"มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี",logo:"https://upload.wikimedia.org/wikipedia/en/8/87/KMUTT_Logo.png",location:"กรุงเทพมหานคร"},
+   {name:"มหาวิทยาลัยเชียงใหม่",logo:"https://upload.wikimedia.org/wikipedia/en/f/f3/Chiang_Mai_University_Logo.png",location:"เชียงใหม่"},
+   {name:"มหาวิทยาลัยแม่ฟ้าหลวง",logo:"https://upload.wikimedia.org/wikipedia/en/f/f3/Mae_Fah_Luang_University_Logo.png",location:"เชียงราย"}
+ ]
+}
 };
 
 const sel=document.getElementById("stream");
@@ -120,6 +90,12 @@ sel.onchange=()=>{
         <p><b>เรียนเกี่ยวกับ:</b> ${f.about}</p>
         <p><b>อาชีพในอนาคต:</b></p>
         <ul>${f.jobs.map(j=>`<li>${j}</li>`).join("")}</ul>
+        <p><b>มหาวิทยาลัยที่เปิดสอน:</b></p>
+        <ul class="uni-list">
+          ${f.universities.map(u=>`
+            <li><img src="${u.logo}" class="logo" alt="${u.name} logo">${u.name} (${u.location})</li>
+          `).join("")}
+        </ul>
       `;
       res.appendChild(d);
     });
