@@ -11,7 +11,7 @@ select{padding:12px 18px;font-size:17px;border-radius:999px;border:2px solid #16
 #results{margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:15px}
 .card{background:#fff;padding:15px;border-radius:18px;box-shadow:0 6px 12px rgba(0,0,0,.1);text-align:left;animation:fadeUp .4s ease both}
 .back{margin:15px auto;display:none;background:#16a34a;color:white;border:none;padding:6px 14px;border-radius:999px;font-size:14px;cursor:pointer}
-.logo{width:32px;height:32px;object-fit:contain;vertical-align:middle;margin-right:6px}
+.logo{width:28px;height:28px;object-fit:contain;vertical-align:middle;margin-right:6px}
 .fadeOut{animation:fadeOut .3s both}
 .fadeIn{animation:fadeIn .3s both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
@@ -23,16 +23,18 @@ ul{padding-left:18px;margin:6px 0}
 <body>
 
 <header id="header">
-  <h1>University Guide for High School</h1>
+  <h1>🎓 University Guide for High School</h1>
   <p>เลือกสายการเรียน ม.ปลาย</p>
   <select id="stream">
     <option value="">-- เลือกสาย --</option>
-    <option value="eng">เตรียมวิศวะ</option>
-    <option value="cs">วิทย์คอม</option>
-    <option value="sci">วิทย์–คณิต</option>
-    <option value="mathlang">คณิต–ภาษา</option>
-    <option value="arts">ศิลป์ภาษา</option>
-    <option value="soc">ไทย–สังคม</option>
+    <option value="eng">⚙️ เตรียมวิศวะ</option>
+    <option value="cs">💻 วิทย์คอม</option>
+    <option value="sci">🔬 วิทย์–คณิต</option>
+    <option value="mathlang">📐 คณิต–ภาษา</option>
+    <option value="jp">🇯🇵 ศิลป์–ญี่ปุ่น</option>
+    <option value="cn">🇨🇳 ศิลป์–จีน</option>
+    <option value="kr">🇰🇷 ศิลป์–เกาหลี</option>
+    <option value="soc">🏛️ ไทย–สังคม</option>
   </select>
 </header>
 
@@ -42,118 +44,41 @@ ul{padding-left:18px;margin:6px 0}
 <script>
 const data = {
 eng:[
-{
- name:"วิศวกรรมเครื่องกล",
- about:"ออกแบบเครื่องจักร ระบบพลังงาน และการผลิต",
- jobs:["วิศวกรโรงงาน","วิศวกรยานยนต์","วิศวกรพลังงาน"],
- universities:[
-  {name:"จุฬาลงกรณ์มหาวิทยาลัย",link:"https://www.me.eng.chula.ac.th"},
-  {name:"เกษตรศาสตร์",link:"https://me.eng.ku.ac.th"},
-  {name:"มจธ.",link:"https://www.me.kmutt.ac.th"}
- ]
-},
-{
- name:"วิศวกรรมไฟฟ้า",
- about:"ระบบไฟฟ้า พลังงาน และระบบควบคุม",
- jobs:["วิศวกรไฟฟ้า","วิศวกรระบบควบคุม"],
- universities:[
-  {name:"จุฬาฯ",link:"https://www.ee.eng.chula.ac.th"},
-  {name:"ลาดกระบัง",link:"https://www.ee.kmitl.ac.th"}
- ]
-},
-{
- name:"วิศวกรรมโยธา",
- about:"งานโครงสร้าง ถนน สะพาน และก่อสร้าง",
- jobs:["วิศวกรโยธา","ผู้ควบคุมงานก่อสร้าง"],
- universities:[
-  {name:"เกษตรศาสตร์",link:"https://www.ce.eng.ku.ac.th"},
-  {name:"ขอนแก่น",link:"https://ce.kku.ac.th"}
- ]
-},
-{
- name:"วิศวกรรมคอมพิวเตอร์",
- about:"ฮาร์ดแวร์ ซอฟต์แวร์ และระบบฝังตัว",
- jobs:["Embedded Engineer","Computer Engineer"],
- universities:[
-  {name:"ธรรมศาสตร์",link:"https://www.cpe.tu.ac.th"},
-  {name:"เชียงใหม่",link:"https://www.cpe.eng.cmu.ac.th"}
- ]
-},
-{
- name:"วิศวกรรมสิ่งแวดล้อม",
- about:"จัดการมลพิษและทรัพยากร",
- jobs:["Environmental Engineer","ที่ปรึกษาสิ่งแวดล้อม"],
- universities:[
-  {name:"มหิดล",link:"https://www.eg.mahidol.ac.th"},
-  {name:"เชียงใหม่",link:"https://www.envi.eng.cmu.ac.th"}
- ]
-},
-{
- name:"วิศวกรรมพลังงาน",
- about:"พลังงานทดแทนและการจัดการพลังงาน",
- jobs:["Energy Engineer","Renewable Energy Specialist"],
- universities:[
-  {name:"แม่โจ้",link:"https://www.energy.mju.ac.th"},
-  {name:"สุรนารี",link:"https://www.sut.ac.th"}
- ]
-}
+ {emoji:"🛠️",name:"วิศวกรรมเครื่องกล",about:"ออกแบบเครื่องจักรและพลังงาน",jobs:["วิศวกรโรงงาน","วิศวกรยานยนต์"],universities:[{name:"จุฬาฯ",link:"https://www.me.eng.chula.ac.th"},{name:"เกษตรศาสตร์",link:"https://me.eng.ku.ac.th"}]},
+ {emoji:"⚡",name:"วิศวกรรมไฟฟ้า",about:"ระบบไฟฟ้าและพลังงาน",jobs:["วิศวกรไฟฟ้า"],universities:[{name:"จุฬาฯ",link:"https://www.ee.eng.chula.ac.th"}]},
+ {emoji:"🏗️",name:"วิศวกรรมโยธา",about:"โครงสร้างและก่อสร้าง",jobs:["วิศวกรโยธา"],universities:[{name:"เกษตรศาสตร์",link:"https://www.ce.eng.ku.ac.th"}]},
+ {emoji:"💻",name:"วิศวกรรมคอมพิวเตอร์",about:"ระบบคอมพิวเตอร์",jobs:["Computer Engineer"],universities:[{name:"ธรรมศาสตร์",link:"https://www.cpe.tu.ac.th"}]},
+ {emoji:"🌱",name:"วิศวกรรมสิ่งแวดล้อม",about:"จัดการสิ่งแวดล้อม",jobs:["Environmental Engineer"],universities:[{name:"มหิดล",link:"https://www.eg.mahidol.ac.th"}]},
+ {emoji:"🔋",name:"วิศวกรรมพลังงาน",about:"พลังงานทดแทน",jobs:["Energy Engineer"],universities:[{name:"แม่โจ้",link:"https://www.energy.mju.ac.th"}]}
 ],
 
 cs:[
-{
- name:"วิทยาการคอมพิวเตอร์",
- about:"เขียนโปรแกรม อัลกอริทึม และ AI",
- jobs:["Software Engineer","AI Engineer","Data Scientist"],
- universities:[
-  {name:"ธรรมศาสตร์",link:"https://cs.tu.ac.th"},
-  {name:"เชียงใหม่",link:"https://www.cs.science.cmu.ac.th"}
- ]
-},
-{
- name:"วิทยาการข้อมูล",
- about:"วิเคราะห์ข้อมูลขนาดใหญ่",
- jobs:["Data Analyst","Data Scientist"],
- universities:[
-  {name:"มหิดล",link:"https://mahidol.ac.th"},
-  {name:"บางมด",link:"https://www.kmutt.ac.th"}
- ]
-},
-{
- name:"เทคโนโลยีสารสนเทศ",
- about:"ระบบเครือข่ายและความปลอดภัย",
- jobs:["IT Support","Network Engineer"],
- universities:[
-  {name:"ลาดกระบัง",link:"https://www.it.kmitl.ac.th"},
-  {name:"ขอนแก่น",link:"https://www.kku.ac.th"}
- ]
-},
-{
- name:"ปัญญาประดิษฐ์",
- about:"Machine Learning และระบบอัจฉริยะ",
- jobs:["AI Engineer","ML Engineer"],
- universities:[
-  {name:"เชียงใหม่",link:"https://www.cmu.ac.th"},
-  {name:"ธรรมศาสตร์",link:"https://tu.ac.th"}
- ]
-},
-{
- name:"ความปลอดภัยไซเบอร์",
- about:"ป้องกันระบบและข้อมูล",
- jobs:["Cybersecurity Analyst","SOC Engineer"],
- universities:[
-  {name:"มหิดล",link:"https://mahidol.ac.th"},
-  {name:"บางมด",link:"https://www.kmutt.ac.th"}
- ]
-},
-{
- name:"เกมและสื่อดิจิทัล",
- about:"พัฒนาเกมและอินเตอร์แอคทีฟมีเดีย",
- jobs:["Game Developer","Digital Artist"],
- universities:[
-  {name:"รังสิต",link:"https://www.rsu.ac.th"},
-  {name:"ศรีปทุม",link:"https://www.spu.ac.th"}
- ]
-}
+ {emoji:"💻",name:"วิทยาการคอมพิวเตอร์",about:"เขียนโปรแกรมและ AI",jobs:["Software Engineer"],universities:[{name:"ธรรมศาสตร์",link:"https://cs.tu.ac.th"}]},
+ {emoji:"📊",name:"วิทยาการข้อมูล",about:"วิเคราะห์ข้อมูล",jobs:["Data Scientist"],universities:[{name:"มหิดล",link:"https://mahidol.ac.th"}]},
+ {emoji:"🔐",name:"ความปลอดภัยไซเบอร์",about:"ป้องกันระบบ",jobs:["Cybersecurity"],universities:[{name:"บางมด",link:"https://www.kmutt.ac.th"}]},
+ {emoji:"🤖",name:"ปัญญาประดิษฐ์",about:"Machine Learning",jobs:["AI Engineer"],universities:[{name:"เชียงใหม่",link:"https://www.cmu.ac.th"}]},
+ {emoji:"🎮",name:"เกมและสื่อดิจิทัล",about:"พัฒนาเกม",jobs:["Game Developer"],universities:[{name:"รังสิต",link:"https://www.rsu.ac.th"}]},
+ {emoji:"🖥️",name:"เทคโนโลยีสารสนเทศ",about:"ระบบ IT",jobs:["IT Support"],universities:[{name:"ลาดกระบัง",link:"https://www.it.kmitl.ac.th"}]}
+],
+
+jp:[
+ {emoji:"🎌",name:"ภาษาญี่ปุ่นธุรกิจ",about:"ภาษาญี่ปุ่น + ธุรกิจ",jobs:["ล่าม","เจ้าหน้าที่บริษัทญี่ปุ่น"],universities:[{name:"ธรรมศาสตร์",link:"https://tu.ac.th"}]},
+ {emoji:"🏯",name:"ญี่ปุ่นศึกษา",about:"วัฒนธรรมและภาษา",jobs:["อาจารย์","นักวิจัย"],universities:[{name:"เชียงใหม่",link:"https://www.cmu.ac.th"}]}
+],
+
+cn:[
+ {emoji:"🐉",name:"ภาษาจีนธุรกิจ",about:"ภาษาจีน + การค้า",jobs:["ล่าม","นักการตลาดจีน"],universities:[{name:"ธรรมศาสตร์",link:"https://tu.ac.th"}]},
+ {emoji:"🏮",name:"จีนศึกษา",about:"ภาษาและวัฒนธรรมจีน",jobs:["นักวิจัย"],universities:[{name:"จุฬาฯ",link:"https://www.chula.ac.th"}]}
+],
+
+kr:[
+ {emoji:"🎤",name:"ภาษาเกาหลี",about:"ภาษาและวัฒนธรรมเกาหลี",jobs:["ล่าม","สื่อสารองค์กร"],universities:[{name:"ศิลปากร",link:"https://www.su.ac.th"}]},
+ {emoji:"📺",name:"เกาหลีศึกษา",about:"สื่อและวัฒนธรรมเกาหลี",jobs:["Content Creator"],universities:[{name:"ธรรมศาสตร์",link:"https://tu.ac.th"}]}
+],
+
+soc:[
+ {emoji:"⚖️",name:"นิติศาสตร์",about:"กฎหมาย",jobs:["ทนาย","นิติกร"],universities:[{name:"ธรรมศาสตร์",link:"https://law.tu.ac.th"}]},
+ {emoji:"🏛️",name:"รัฐศาสตร์",about:"การเมืองและการปกครอง",jobs:["นักการทูต","ข้าราชการ"],universities:[{name:"จุฬาฯ",link:"https://www.polsci.chula.ac.th"}]}
 ]
 };
 
@@ -172,7 +97,7 @@ sel.onchange=()=>{
       const d=document.createElement("div");
       d.className="card";
       d.innerHTML=`
-        <h3>${f.name}</h3>
+        <h3>${f.emoji} ${f.name}</h3>
         <p><b>เรียนเกี่ยวกับ:</b> ${f.about}</p>
         <p><b>อาชีพในอนาคต:</b></p>
         <ul>${f.jobs.map(j=>`<li>${j}</li>`).join("")}</ul>
@@ -199,4 +124,5 @@ back.onclick=()=>{
 </script>
 </body>
 </html>
+
 
