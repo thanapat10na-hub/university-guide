@@ -36,147 +36,70 @@ header h1{font-size:1.1rem;}
 
 <script>
 const data = {
-"เตรียมวิศวะ":[
-{name:"วิศวกรรมไฟฟ้า",uni:"chula.ac.th"},
-{name:"วิศวกรรมเครื่องกล",uni:"tu.ac.th"},
-{name:"วิศวกรรมโยธา",uni:"ku.ac.th"},
-{name:"วิศวกรรมคอมพิวเตอร์",uni:"mahidol.ac.th"},
-{name:"วิศวกรรมอุตสาหการ",uni:"kku.ac.th"},
-{name:"วิศวกรรมเคมี",uni:"kmutt.ac.th"},
-{name:"วิศวกรรมสิ่งแวดล้อม",uni:"swu.ac.th"},
-{name:"วิศวกรรมยานยนต์",uni:"kmitl.ac.th"},
-{name:"วิศวกรรมพลังงาน",uni:"ubu.ac.th"},
-{name:"วิศวกรรมชีวการแพทย์",uni:"nu.ac.th"}
-],
-"วิทย์คอม":[
-{name:"วิทยาการคอมพิวเตอร์",uni:"chula.ac.th"},
-{name:"เทคโนโลยีสารสนเทศ",uni:"mahidol.ac.th"},
-{name:"ปัญญาประดิษฐ์",uni:"tu.ac.th"},
-{name:"วิทยาศาสตร์ข้อมูล",uni:"ku.ac.th"},
-{name:"ความมั่นคงไซเบอร์",uni:"kmitl.ac.th"},
-{name:"วิศวกรรมซอฟต์แวร์",uni:"kmutt.ac.th"},
-{name:"เกมและสื่อโต้ตอบ",uni:"swu.ac.th"},
-{name:"ฟินเทค",uni:"kku.ac.th"},
-{name:"IoT",uni:"ubu.ac.th"},
-{name:"คลาวด์คอมพิวติ้ง",uni:"nu.ac.th"}
-],
-"วิทย์คณิต":[
-{name:"ฟิสิกส์",uni:"chula.ac.th"},
-{name:"เคมี",uni:"mahidol.ac.th"},
-{name:"ชีววิทยา",uni:"tu.ac.th"},
-{name:"คณิตศาสตร์",uni:"ku.ac.th"},
-{name:"สถิติ",uni:"kku.ac.th"},
-{name:"เทคโนโลยีชีวภาพ",uni:"kmutt.ac.th"},
-{name:"วัสดุศาสตร์",uni:"swu.ac.th"},
-{name:"ดาราศาสตร์",uni:"ubu.ac.th"},
-{name:"ธรณีวิทยา",uni:"nu.ac.th"},
-{name:"สิ่งแวดล้อม",uni:"psu.ac.th"}
-],
-"คณิตภาษา":[
-{name:"บริหารธุรกิจ",uni:"chula.ac.th"},
-{name:"การบัญชี",uni:"tu.ac.th"},
-{name:"เศรษฐศาสตร์",uni:"ku.ac.th"},
-{name:"การตลาด",uni:"mahidol.ac.th"},
-{name:"การเงิน",uni:"kku.ac.th"},
-{name:"โลจิสติกส์",uni:"psu.ac.th"},
-{name:"การท่องเที่ยว",uni:"swu.ac.th"},
-{name:"การโรงแรม",uni:"ubu.ac.th"},
-{name:"การค้าระหว่างประเทศ",uni:"nu.ac.th"},
-{name:"ธุรกิจดิจิทัล",uni:"kmitl.ac.th"}
-],
-"ศิลปญี่ปุ่น":[
-{name:"ภาษาญี่ปุ่น",uni:"tu.ac.th"},
-{name:"ล่ามญี่ปุ่น",uni:"chula.ac.th"},
-{name:"ธุรกิจญี่ปุ่น",uni:"ku.ac.th"},
-{name:"การท่องเที่ยวญี่ปุ่น",uni:"mahidol.ac.th"},
-{name:"การบิน",uni:"kmitl.ac.th"},
-{name:"การโรงแรม",uni:"psu.ac.th"},
-{name:"วัฒนธรรมญี่ปุ่น",uni:"swu.ac.th"},
-{name:"การสอนภาษาญี่ปุ่น",uni:"nu.ac.th"},
-{name:"สื่อสารมวลชน",uni:"kku.ac.th"},
-{name:"การค้าญี่ปุ่น",uni:"ubu.ac.th"}
-],
-"ศิลปจีน":[
-{name:"ภาษาจีน",uni:"tu.ac.th"},
-{name:"ล่ามจีน",uni:"chula.ac.th"},
-{name:"ธุรกิจจีน",uni:"ku.ac.th"},
-{name:"โลจิสติกส์จีน",uni:"mahidol.ac.th"},
-{name:"การท่องเที่ยวจีน",uni:"psu.ac.th"},
-{name:"การบิน",uni:"kmitl.ac.th"},
-{name:"วัฒนธรรมจีน",uni:"swu.ac.th"},
-{name:"การค้าระหว่างประเทศ",uni:"nu.ac.th"},
-{name:"สื่อสารจีน",uni:"kku.ac.th"},
-{name:"การโรงแรม",uni:"ubu.ac.th"}
-],
-"ศิลปเกาหลี":[
-{name:"ภาษาเกาหลี",uni:"tu.ac.th"},
-{name:"ธุรกิจเกาหลี",uni:"chula.ac.th"},
-{name:"ล่ามเกาหลี",uni:"ku.ac.th"},
-{name:"การท่องเที่ยวเกาหลี",uni:"mahidol.ac.th"},
-{name:"สื่อบันเทิง",uni:"kku.ac.th"},
-{name:"การบิน",uni:"kmitl.ac.th"},
-{name:"วัฒนธรรมเกาหลี",uni:"swu.ac.th"},
-{name:"การตลาดเกาหลี",uni:"psu.ac.th"},
-{name:"การโรงแรม",uni:"nu.ac.th"},
-{name:"การค้าระหว่างประเทศ",uni:"ubu.ac.th"}
-],
-"ไทยสังคม":[
-{name:"นิติศาสตร์",uni:"chula.ac.th"},
-{name:"รัฐศาสตร์",uni:"tu.ac.th"},
-{name:"สังคมวิทยา",uni:"ku.ac.th"},
-{name:"ภูมิศาสตร์",uni:"mahidol.ac.th"},
-{name:"ประวัติศาสตร์",uni:"swu.ac.th"},
-{name:"โบราณคดี",uni:"kku.ac.th"},
-{name:"การทูต",uni:"nu.ac.th"},
-{name:"สื่อสารมวลชน",uni:"psu.ac.th"},
-{name:"พัฒนาชุมชน",uni:"ubu.ac.th"},
-{name:"การเมืองการปกครอง",uni:"kmitl.ac.th"}
-]
+"เตรียมวิศวะ":{
+ "วิศวกรรมไฟฟ้า":["chula.ac.th","tu.ac.th","ku.ac.th","kmitl.ac.th"],
+ "วิศวกรรมเครื่องกล":["chula.ac.th","tu.ac.th","kmutt.ac.th","kku.ac.th"],
+ "วิศวกรรมโยธา":["ku.ac.th","tu.ac.th","kmitl.ac.th","psu.ac.th"],
+ "วิศวกรรมคอมพิวเตอร์":["chula.ac.th","kmutt.ac.th","kmitl.ac.th","kku.ac.th"],
+ "วิศวกรรมอุตสาหการ":["tu.ac.th","ku.ac.th","kku.ac.th","psu.ac.th"],
+ "วิศวกรรมเคมี":["chula.ac.th","kmutt.ac.th","tu.ac.th","psu.ac.th"],
+ "วิศวกรรมสิ่งแวดล้อม":["ku.ac.th","tu.ac.th","psu.ac.th","ubu.ac.th"],
+ "วิศวกรรมยานยนต์":["kmitl.ac.th","kmutt.ac.th","psu.ac.th"],
+ "วิศวกรรมพลังงาน":["kku.ac.th","ubu.ac.th","nu.ac.th"],
+ "วิศวกรรมชีวการแพทย์":["mahidol.ac.th","chula.ac.th","nu.ac.th"]
+},
+"วิทย์คอม":{
+ "วิทยาการคอมพิวเตอร์":["chula.ac.th","tu.ac.th","ku.ac.th","kku.ac.th"],
+ "เทคโนโลยีสารสนเทศ":["mahidol.ac.th","kmitl.ac.th","psu.ac.th"],
+ "ปัญญาประดิษฐ์":["chula.ac.th","kmutt.ac.th","tu.ac.th"],
+ "วิทยาศาสตร์ข้อมูล":["tu.ac.th","ku.ac.th","kku.ac.th"],
+ "ความมั่นคงไซเบอร์":["kmitl.ac.th","kmutt.ac.th"],
+ "วิศวกรรมซอฟต์แวร์":["kmutt.ac.th","kmitl.ac.th","psu.ac.th"]
+}
 };
-
-const jobs = [
-"วิศวกร / นักวิชาการเฉพาะทาง",
-"นักวิจัย / นักวิทยาศาสตร์",
-"นักวิเคราะห์ข้อมูล / ระบบ",
-"ผู้จัดการโครงการ",
-"ที่ปรึกษาองค์กร",
-"อาจารย์ / ผู้สอน"
-];
 
 const tabs=document.getElementById("tabs");
 const cards=document.getElementById("cards");
 
-// สร้างปุ่มเลือกสาย
-Object.keys(data).forEach(track=>{
-  const b=document.createElement("button");
-  b.textContent=track;
-  b.onclick=()=>{
-    tabs.style.display="none";
-    render(track);
-  };
-  tabs.appendChild(b);
-});
-
-function render(track){
-  cards.innerHTML=`<h2 style="grid-column:1/-1;color:#1b7f3c">สาย: ${track}</h2>`;
-  data[track].forEach(f=>{
-    const div=document.createElement("div");
-    div.className="card";
-    div.innerHTML=`
-      <img class="uni" src="https://www.google.com/s2/favicons?domain=${f.uni}&sz=64">
-      <h3>${f.name}</h3>
-      <button onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display=='block'?'none':'block'">ดูอาชีพ</button>
-      <div class="jobs">${jobs.join("<br>")}</div>
-    `;
-    cards.appendChild(div);
-  });
+function showTracks(){
+ tabs.style.display="flex";
+ cards.innerHTML="<p style='text-align:center'>👆 เลือกสายการเรียน</p>";
 }
 
-// ตอนแรกซ่อน cards
-cards.innerHTML = "<p style='text-align:center;color:#555'>👆 เลือกสายการเรียนก่อน</p>";
-</script>
+function showFaculties(track){
+ tabs.style.display="none";
+ cards.innerHTML=`<button onclick="showTracks()">⬅ ย้อนกลับ</button><h2>${track}</h2>`;
+ Object.keys(data[track]).forEach(f=>{
+  const d=document.createElement("div");
+  d.className="card";
+  d.innerHTML=`<h3>${f}</h3><button onclick="showUnis('${track}','${f}')">ดูมหาลัย</button>`;
+  cards.appendChild(d);
+ });
+}
 
+function showUnis(track,fac){
+ cards.innerHTML=`<button onclick="showFaculties('${track}')">⬅ ย้อนกลับ</button><h2>${fac}</h2>`;
+ data[track][fac].forEach(u=>{
+  const d=document.createElement("div");
+  d.className="card";
+  d.innerHTML=`<img class="uni" src="https://www.google.com/s2/favicons?domain=${u}&sz=64"><p>${u}</p>`;
+  cards.appendChild(d);
+ });
+}
+
+// สร้างปุ่มสาย
+Object.keys(data).forEach(t=>{
+ const b=document.createElement("button");
+ b.textContent=t;
+ b.onclick=()=>showFaculties(t);
+ tabs.appendChild(b);
+});
+
+showTracks();
+</script>
+  
 </body>
 </html>
+
 
 
