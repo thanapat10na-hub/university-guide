@@ -1,44 +1,31 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8">
 <title>University Guide for High School</title>
 <style>
 body{font-family:'Segoe UI',sans-serif;background:linear-gradient(120deg,#e0f2ff,#fefefe);text-align:center;padding:30px}
 header{background:#16a34a;color:#fff;padding:20px;border-radius:20px;box-shadow:0 10px 20px rgba(0,0,0,.15)}
-h1{margin:0;font-size:2.2em}
-select{padding:12px 18px;font-size:17px;border-radius:999px;border:2px solid #16a34a;background:#ecfdf5;color:#065f46;font-weight:600;cursor:pointer;box-shadow:0 4px 8px rgba(0,0,0,.1)}
-#results{margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:15px}
-.card{background:#fff;padding:15px;border-radius:18px;box-shadow:0 6px 12px rgba(0,0,0,.1);text-align:left;transition:.2s;animation:fadeUp .5s ease both}
-.card:hover{transform:translateY(-4px);box-shadow:0 10px 18px rgba(0,0,0,.15)}
-.logo{width:50px;height:50px;object-fit:contain;margin-right:10px}
-.row{display:flex;align-items:center}
-.back{margin:15px auto;display:none;background:#16a34a;color:white;border:none;padding:6px 14px;border-radius:999px;font-size:14px;cursor:pointer;box-shadow:0 4px 8px rgba(0,0,0,.1)}
-
-.fadeOut{animation:fadeOut .3s ease both}
-.fadeIn{animation:fadeIn .3s ease both}
-
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(20px)}
-  to{opacity:1;transform:none}
-}
-@keyframes fadeOut{
-  from{opacity:1}
-  to{opacity:0}
-}
-@keyframes fadeIn{
-  from{opacity:0}
-  to{opacity:1}
-}
+h1{margin:0;font-size:2em}
+select{padding:12px 18px;font-size:17px;border-radius:999px;border:2px solid #16a34a;background:#ecfdf5;color:#065f46;font-weight:600;cursor:pointer}
+#results{margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:15px}
+.card{background:#fff;padding:15px;border-radius:18px;box-shadow:0 6px 12px rgba(0,0,0,.1);text-align:left;animation:fadeUp .4s ease both}
+.back{margin:15px auto;display:none;background:#16a34a;color:white;border:none;padding:6px 14px;border-radius:999px;font-size:14px;cursor:pointer}
+.fadeOut{animation:fadeOut .3s both}
+.fadeIn{animation:fadeIn .3s both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes fadeOut{from{opacity:1}to{opacity:0}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+ul{padding-left:18px;margin:6px 0}
 </style>
 </head>
 <body>
 
 <header id="header">
   <h1>University Guide for High School</h1>
-  <p>เลือกสาย ม.ปลาย เพื่อดูคณะที่เหมาะ</p>
+  <p>เลือกสาย ม.ปลาย</p>
   <select id="stream">
-    <option value="">-- เลือกสาย ม.ปลาย --</option>
+    <option value="">-- เลือกสาย --</option>
     <option value="eng">เตรียมวิศวะ</option>
     <option value="cs">วิทย์คอม</option>
   </select>
@@ -48,54 +35,76 @@ select{padding:12px 18px;font-size:17px;border-radius:999px;border:2px solid #16
 <main id="results"></main>
 
 <script>
-const guides={
+const guides = {
 eng:[
- {faculty:"วิศวกรรมเครื่องกล",university:"จุฬาลงกรณ์มหาวิทยาลัย",icon:"🛠️",desc:"ออกแบบเครื่องจักร ระบบกลไก การผลิต และพลังงาน"},
- {faculty:"วิศวกรรมไฟฟ้า",university:"มจธ.",icon:"⚡",desc:"ระบบไฟฟ้า อิเล็กทรอนิกส์ และระบบควบคุม"},
- {faculty:"วิศวกรรมโยธา",university:"เกษตรศาสตร์",icon:"🏗️",desc:"โครงสร้าง ถนน สะพาน และงานก่อสร้าง"}
+{
+ faculty:"วิศวกรรมเครื่องกล",
+ about:"ออกแบบเครื่องจักร ระบบการผลิต และพลังงาน",
+ jobs:["วิศวกรโรงงาน","วิศวกรยานยนต์","วิศวกรพลังงาน"],
+ universities:[
+  {name:"จุฬาลงกรณ์มหาวิทยาลัย",link:"https://www.me.eng.chula.ac.th"},
+  {name:"เกษตรศาสตร์",link:"https://me.eng.ku.ac.th"},
+  {name:"มจธ.",link:"https://www.me.kmutt.ac.th"}
+ ]
+},
+{
+ faculty:"วิศวกรรมไฟฟ้า",
+ about:"ระบบไฟฟ้า พลังงาน และระบบควบคุม",
+ jobs:["วิศวกรไฟฟ้า","วิศวกรระบบควบคุม","วิศวกรพลังงาน"],
+ universities:[
+  {name:"จุฬาฯ",link:"https://www.ee.eng.chula.ac.th"},
+  {name:"ลาดกระบัง",link:"https://www.ee.kmitl.ac.th"}
+ ]
+}
 ],
 cs:[
- {faculty:"วิทยาการคอมพิวเตอร์",university:"ธรรมศาสตร์",icon:"💻",desc:"เขียนโปรแกรม อัลกอริทึม และ AI"},
- {faculty:"เทคโนโลยีสารสนเทศ",university:"ลาดกระบัง",icon:"🖥️",desc:"เครือข่าย ฐานข้อมูล และความปลอดภัยไซเบอร์"}
+{
+ faculty:"วิทยาการคอมพิวเตอร์",
+ about:"การเขียนโปรแกรม อัลกอริทึม และ AI",
+ jobs:["Software Engineer","Data Scientist","AI Engineer"],
+ universities:[
+  {name:"ธรรมศาสตร์",link:"https://cs.tu.ac.th"},
+  {name:"เชียงใหม่",link:"https://www.cs.science.cmu.ac.th"}
+ ]
+}
 ]
 };
 
-const sel=document.getElementById('stream');
-const res=document.getElementById('results');
-const back=document.getElementById('backBtn');
-const header=document.getElementById('header');
+const sel=document.getElementById("stream");
+const res=document.getElementById("results");
+const back=document.getElementById("backBtn");
+const header=document.getElementById("header");
 
-sel.addEventListener('change',()=>{
-  if(!guides[sel.value])return;
-  header.classList.add('fadeOut');
+sel.onchange=()=>{
+  if(!guides[sel.value]) return;
+  header.classList.add("fadeOut");
   setTimeout(()=>{
-    header.style.display='none';
-    header.classList.remove('fadeOut');
-    back.style.display='inline-block';
-    guides[sel.value].forEach(i=>{
-      const d=document.createElement('div');
-      d.className='card';
+    header.style.display="none";
+    back.style.display="inline-block";
+    guides[sel.value].forEach(f=>{
+      const d=document.createElement("div");
+      d.className="card";
       d.innerHTML=`
-        <h3>${i.icon} ${i.faculty}</h3>
-        <p><b>มหาวิทยาลัย:</b> ${i.university}</p>
-        <p><b>เรียนเกี่ยวกับ:</b> ${i.desc}</p>
+        <h3>${f.faculty}</h3>
+        <p><b>เรียนเกี่ยวกับ:</b> ${f.about}</p>
+        <p><b>อาชีพในอนาคต:</b></p>
+        <ul>${f.jobs.map(j=>`<li>${j}</li>`).join("")}</ul>
+        <p><b>เรียนได้ที่:</b></p>
+        <ul>${f.universities.map(u=>`<li><a href="${u.link}" target="_blank">${u.name}</a></li>`).join("")}</ul>
       `;
       res.appendChild(d);
     });
   },300);
-});
+};
 
-back.addEventListener('click',()=>{
-  res.innerHTML='';
-  back.style.display='none';
-  header.style.display='block';
-  header.classList.add('fadeIn');
-  setTimeout(()=>header.classList.remove('fadeIn'),300);
-  sel.value='';
-});
+back.onclick=()=>{
+  res.innerHTML="";
+  back.style.display="none";
+  header.style.display="block";
+  header.classList.add("fadeIn");
+  sel.value="";
+};
 </script>
-
 </body>
 </html>
-
 
