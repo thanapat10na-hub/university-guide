@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>แนะแนวเรียนต่อมหาวิทยาลัย</title>
+<style>
+body{font-family:'Segoe UI',sans-serif;background:#f0fdf4;text-align:center;padding:30px}
+header{background:#16a34a;color:#fff;padding:20px;border-radius:20px;box-shadow:0 10px 20px rgba(0,0,0,.15)}
+select{padding:12px 18px;font-size:17px;border-radius:999px;border:2px solid #16a34a;background:#ecfdf5;color:#065f46;font-weight:600}
+#results{margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:15px}
+.card{background:#fff;padding:15px;border-radius:18px;box-shadow:0 6px 12px rgba(0,0,0,.1);text-align:left}
+button{background:#16a34a;color:white;border:none;border-radius:999px;padding:6px 12px;cursor:pointer;margin-top:6px}
+.jobs{display:none;margin-top:8px;padding-left:15px}
+a{color:#15803d;font-weight:600;text-decoration:none}
+</style>
+</head>
+<body>
+
+<header>
+<h1>แนะแนวเรียนต่อระดับมหาวิทยาลัย</h1>
+<p>เลือกสาย ม.ปลาย เพื่อดูคณะที่เหมาะ</p>
+<select id="stream">
+<option value="">-- เลือกสาย --</option>
+<option value="eng">เตรียมวิศวะ</option>
+</select>
+</header>
+
+<main id="results"></main>
+
+<script>
+const guides = {
+  eng: [
+    {
+      faculty: "วิศวกรรมคอมพิวเตอร์",
+      university: "จุฬาฯ / ธรรมศาสตร์ / ลาดกระบัง",
+      desc: "พัฒนาระบบคอมพิวเตอร์ ฮาร์ดแวร์และซอฟต์แวร์",
+      link: "https://cs.tu.ac.th",
+      jobs: ["Software Engineer","Embedded Engineer","System Architect","DevOps Engineer","IoT Engineer","AI Engineer"]
+    },
+    {
+      faculty: "วิศวกรรมไฟฟ้า",
+      university: "จุฬาฯ / เกษตร / บางมด",
+      desc: "ระบบไฟฟ้า อิเล็กทรอนิกส์ และพลังงาน",
+      link: "https://www.ee.eng.chula.ac.th",
+      jobs: ["Electrical Engineer","Power System Engineer","Control Engineer","Automation Engineer","Energy Engineer","Maintenance Engineer"]
+    },
+    {
+      faculty: "วิศวกรรมเครื่องกล",
+      university: "จุฬาฯ / เชียงใหม่ / ขอนแก่น",
+      desc: "ออกแบบเครื่องจักร ระบบกลไก",
+      link: "https://www.me.eng.chula.ac.th",
+      jobs: ["Mechanical Engineer","Design Engineer","Manufacturing Engineer","Maintenance Engineer","HVAC Engineer","Project Engineer"]
+    },
+    {
+      faculty: "วิศวกรรมโยธา",
+      university: "จุฬาฯ / เกษตร / มช.",
+      desc: "โครงสร้าง ถนน สะพาน งานก่อสร้าง",
+      link: "https://www.ce.eng.chula.ac.th",
+      jobs: ["Civil Engineer","Structural Engineer","Site Engineer","Construction Manager","Quantity Surveyor","Geotechnical Engineer"]
+    },
+    {
+      faculty: "วิศวกรรมอุตสาหการ",
+      university: "ลาดกระบัง / บางมด / เกษตร",
+      desc: "จัดการระบบการผลิตและโลจิสติกส์",
+      link: "https://www.ie.eng.chula.ac.th",
+      jobs: ["Industrial Engineer","Process Engineer","Quality Engineer","Supply Chain Analyst","Operations Manager","Lean Consultant"]
+    },
+    {
+      faculty: "วิศวกรรมเคมี",
+      university: "จุฬาฯ / มหิดล / เกษตร",
+      desc: "กระบวนการผลิตสารเคมีและพลังงาน",
+      link: "https://www.che.eng.chula.ac.th",
+      jobs: ["Chemical Engineer","Process Engineer","Production Engineer","R&D Engineer","Safety Engineer","Energy Engineer"]
+    },
+    {
+      faculty: "วิศวกรรมสิ่งแวดล้อม",
+      university: "มหิดล / เกษตร / เชียงใหม่",
+      desc: "จัดการมลพิษและทรัพยากร",
+      link: "https://www.env.eng.chula.ac.th",
+      jobs: ["Environmental Engineer","Sustainability Consultant","Water Treatment Engineer","EHS Officer","Environmental Analyst","Waste Management Engineer"]
+    },
+    {
+      faculty: "วิศวกรรมยานยนต์",
+      university: "สุรนารี / ลาดกระบัง",
+      desc: "ระบบยานยนต์และพลังงานทางเลือก",
+      link: "https://www.autotech.sut.ac.th",
+      jobs: ["Automotive Engineer","EV Engineer","Powertrain Engineer","Vehicle Test Engineer","ADAS Engineer","R&D Engineer"]
+    },
+    {
+      faculty: "วิศวกรรมพลังงาน",
+      university: "แม่โจ้ / บางมด",
+      desc: "พลังงานทดแทนและการจัดการพลังงาน",
+      link: "https://www.energy.eng.chula.ac.th",
+      jobs: ["Energy Engineer","Renewable Energy Engineer","Solar Engineer","Wind Engineer","Energy Analyst","Sustainability Engineer"]
+    },
+    {
+      faculty: "วิศวกรรมวัสดุ",
+      university: "เชียงใหม่ / เกษตร",
+      desc: "พัฒนาวัสดุและนาโนเทคโนโลยี",
+      link: "https://www.mat.eng.chula.ac.th",
+      jobs: ["Materials Engineer","Metallurgist","Nanotech Engineer","R&D Engineer","Quality Engineer","Failure Analyst"]
+    }
+  ]
+};
+
+const sel = document.getElementById("stream");
+const res = document.getElementById("results");
+
+sel.addEventListener("change", () => {
+  res.innerHTML = "";
+  (guides[sel.value] || []).forEach(i => {
+    const d = document.createElement("div");
+    d.className = "card";
+    d.innerHTML = `
+      <h3>${i.faculty}</h3>
+      <p><b>มหาวิทยาลัย:</b> ${i.university}</p>
+      <p><b>เรียนเกี่ยวกับ:</b> ${i.desc}</p>
+      <button onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='block'?'none':'block'">ดูอาชีพ</button>
+      <ul class="jobs">${i.jobs.map(j => `<li>${j}</li>`).join("")}</ul>
+      <p><a href="${i.link}" target="_blank">เว็บไซต์คณะ</a></p>
+    `;
+    res.appendChild(d);
+  });
+});
+</script>
+
+</body>
+</html>
