@@ -2,127 +2,178 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<title>แนะแนวเรียนต่อมหาวิทยาลัย</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>University Guide for High School</title>
 <style>
-body{font-family:'Segoe UI',sans-serif;background:#f0fdf4;text-align:center;padding:30px}
-header{background:#16a34a;color:#fff;padding:20px;border-radius:20px;box-shadow:0 10px 20px rgba(0,0,0,.15)}
-select{padding:12px 18px;font-size:17px;border-radius:999px;border:2px solid #16a34a;background:#ecfdf5;color:#065f46;font-weight:600}
-#results{margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:15px}
-.card{background:#fff;padding:15px;border-radius:18px;box-shadow:0 6px 12px rgba(0,0,0,.1);text-align:left}
-button{background:#16a34a;color:white;border:none;border-radius:999px;padding:6px 12px;cursor:pointer;margin-top:6px}
-.jobs{display:none;margin-top:8px;padding-left:15px}
-a{color:#15803d;font-weight:600;text-decoration:none}
+body {margin:0;font-family:sans-serif;background:#f4fff6;}
+header{display:flex;align-items:center;gap:12px;padding:12px 20px;background:#1b7f3c;color:white;}
+header img{height:48px;}
+header h1{font-size:1.4rem;margin:0;}
+.tabs{display:flex;flex-wrap:wrap;justify-content:center;background:#e8f5ec;padding:10px;}
+.tabs button{border:none;margin:5px;padding:8px 14px;border-radius:20px;background:white;cursor:pointer;font-size:0.9rem;}
+.tabs button.active{background:#1b7f3c;color:white;}
+.container{padding:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;}
+.card{background:white;border-radius:12px;padding:15px;box-shadow:0 2px 5px rgba(0,0,0,.1);text-align:center;}
+.card h3{margin-top:8px;color:#1b7f3c;font-size:1.05rem;}
+.card img.uni{height:32px;}
+.jobs{display:none;font-size:.9rem;color:#444;margin-top:8px;text-align:left;}
+.card button{margin-top:8px;border:none;background:#1b7f3c;color:white;padding:6px 10px;border-radius:10px;cursor:pointer;}
+@media(max-width:600px){
+header h1{font-size:1.1rem;}
+.card{font-size:0.95rem;}
+}
 </style>
 </head>
 <body>
 
 <header>
-<h1>แนะแนวเรียนต่อระดับมหาวิทยาลัย</h1>
-<p>เลือกสาย ม.ปลาย เพื่อดูคณะที่เหมาะ</p>
-<select id="stream">
-<option value="">-- เลือกสาย --</option>
-<option value="eng">เตรียมวิศวะ</option>
-</select>
+  <img src="logo.png" alt="logo">
+  <h1>University Guide for High School</h1>
 </header>
 
-<main id="results"></main>
+<div class="tabs" id="tabs"></div>
+<div class="container" id="cards"></div>
 
 <script>
-const guides = {
-  eng: [
-    {
-      faculty: "วิศวกรรมคอมพิวเตอร์",
-      university: "จุฬาฯ / ธรรมศาสตร์ / ลาดกระบัง",
-      desc: "พัฒนาระบบคอมพิวเตอร์ ฮาร์ดแวร์และซอฟต์แวร์",
-      link: "https://cs.tu.ac.th",
-      jobs: ["Software Engineer","Embedded Engineer","System Architect","DevOps Engineer","IoT Engineer","AI Engineer"]
-    },
-    {
-      faculty: "วิศวกรรมไฟฟ้า",
-      university: "จุฬาฯ / เกษตร / บางมด",
-      desc: "ระบบไฟฟ้า อิเล็กทรอนิกส์ และพลังงาน",
-      link: "https://www.ee.eng.chula.ac.th",
-      jobs: ["Electrical Engineer","Power System Engineer","Control Engineer","Automation Engineer","Energy Engineer","Maintenance Engineer"]
-    },
-    {
-      faculty: "วิศวกรรมเครื่องกล",
-      university: "จุฬาฯ / เชียงใหม่ / ขอนแก่น",
-      desc: "ออกแบบเครื่องจักร ระบบกลไก",
-      link: "https://www.me.eng.chula.ac.th",
-      jobs: ["Mechanical Engineer","Design Engineer","Manufacturing Engineer","Maintenance Engineer","HVAC Engineer","Project Engineer"]
-    },
-    {
-      faculty: "วิศวกรรมโยธา",
-      university: "จุฬาฯ / เกษตร / มช.",
-      desc: "โครงสร้าง ถนน สะพาน งานก่อสร้าง",
-      link: "https://www.ce.eng.chula.ac.th",
-      jobs: ["Civil Engineer","Structural Engineer","Site Engineer","Construction Manager","Quantity Surveyor","Geotechnical Engineer"]
-    },
-    {
-      faculty: "วิศวกรรมอุตสาหการ",
-      university: "ลาดกระบัง / บางมด / เกษตร",
-      desc: "จัดการระบบการผลิตและโลจิสติกส์",
-      link: "https://www.ie.eng.chula.ac.th",
-      jobs: ["Industrial Engineer","Process Engineer","Quality Engineer","Supply Chain Analyst","Operations Manager","Lean Consultant"]
-    },
-    {
-      faculty: "วิศวกรรมเคมี",
-      university: "จุฬาฯ / มหิดล / เกษตร",
-      desc: "กระบวนการผลิตสารเคมีและพลังงาน",
-      link: "https://www.che.eng.chula.ac.th",
-      jobs: ["Chemical Engineer","Process Engineer","Production Engineer","R&D Engineer","Safety Engineer","Energy Engineer"]
-    },
-    {
-      faculty: "วิศวกรรมสิ่งแวดล้อม",
-      university: "มหิดล / เกษตร / เชียงใหม่",
-      desc: "จัดการมลพิษและทรัพยากร",
-      link: "https://www.env.eng.chula.ac.th",
-      jobs: ["Environmental Engineer","Sustainability Consultant","Water Treatment Engineer","EHS Officer","Environmental Analyst","Waste Management Engineer"]
-    },
-    {
-      faculty: "วิศวกรรมยานยนต์",
-      university: "สุรนารี / ลาดกระบัง",
-      desc: "ระบบยานยนต์และพลังงานทางเลือก",
-      link: "https://www.autotech.sut.ac.th",
-      jobs: ["Automotive Engineer","EV Engineer","Powertrain Engineer","Vehicle Test Engineer","ADAS Engineer","R&D Engineer"]
-    },
-    {
-      faculty: "วิศวกรรมพลังงาน",
-      university: "แม่โจ้ / บางมด",
-      desc: "พลังงานทดแทนและการจัดการพลังงาน",
-      link: "https://www.energy.eng.chula.ac.th",
-      jobs: ["Energy Engineer","Renewable Energy Engineer","Solar Engineer","Wind Engineer","Energy Analyst","Sustainability Engineer"]
-    },
-    {
-      faculty: "วิศวกรรมวัสดุ",
-      university: "เชียงใหม่ / เกษตร",
-      desc: "พัฒนาวัสดุและนาโนเทคโนโลยี",
-      link: "https://www.mat.eng.chula.ac.th",
-      jobs: ["Materials Engineer","Metallurgist","Nanotech Engineer","R&D Engineer","Quality Engineer","Failure Analyst"]
-    }
-  ]
+const data = {
+"เตรียมวิศวะ":[
+{name:"วิศวกรรมไฟฟ้า",uni:"chula.ac.th"},
+{name:"วิศวกรรมเครื่องกล",uni:"tu.ac.th"},
+{name:"วิศวกรรมโยธา",uni:"ku.ac.th"},
+{name:"วิศวกรรมคอมพิวเตอร์",uni:"mahidol.ac.th"},
+{name:"วิศวกรรมอุตสาหการ",uni:"kku.ac.th"},
+{name:"วิศวกรรมเคมี",uni:"kmutt.ac.th"},
+{name:"วิศวกรรมสิ่งแวดล้อม",uni:"swu.ac.th"},
+{name:"วิศวกรรมยานยนต์",uni:"kmitl.ac.th"},
+{name:"วิศวกรรมพลังงาน",uni:"ubu.ac.th"},
+{name:"วิศวกรรมชีวการแพทย์",uni:"nu.ac.th"}
+],
+"วิทย์คอม":[
+{name:"วิทยาการคอมพิวเตอร์",uni:"chula.ac.th"},
+{name:"เทคโนโลยีสารสนเทศ",uni:"mahidol.ac.th"},
+{name:"ปัญญาประดิษฐ์",uni:"tu.ac.th"},
+{name:"วิทยาศาสตร์ข้อมูล",uni:"ku.ac.th"},
+{name:"ความมั่นคงไซเบอร์",uni:"kmitl.ac.th"},
+{name:"วิศวกรรมซอฟต์แวร์",uni:"kmutt.ac.th"},
+{name:"เกมและสื่อโต้ตอบ",uni:"swu.ac.th"},
+{name:"ฟินเทค",uni:"kku.ac.th"},
+{name:"IoT",uni:"ubu.ac.th"},
+{name:"คลาวด์คอมพิวติ้ง",uni:"nu.ac.th"}
+],
+"วิทย์คณิต":[
+{name:"ฟิสิกส์",uni:"chula.ac.th"},
+{name:"เคมี",uni:"mahidol.ac.th"},
+{name:"ชีววิทยา",uni:"tu.ac.th"},
+{name:"คณิตศาสตร์",uni:"ku.ac.th"},
+{name:"สถิติ",uni:"kku.ac.th"},
+{name:"เทคโนโลยีชีวภาพ",uni:"kmutt.ac.th"},
+{name:"วัสดุศาสตร์",uni:"swu.ac.th"},
+{name:"ดาราศาสตร์",uni:"ubu.ac.th"},
+{name:"ธรณีวิทยา",uni:"nu.ac.th"},
+{name:"สิ่งแวดล้อม",uni:"psu.ac.th"}
+],
+"คณิตภาษา":[
+{name:"บริหารธุรกิจ",uni:"chula.ac.th"},
+{name:"การบัญชี",uni:"tu.ac.th"},
+{name:"เศรษฐศาสตร์",uni:"ku.ac.th"},
+{name:"การตลาด",uni:"mahidol.ac.th"},
+{name:"การเงิน",uni:"kku.ac.th"},
+{name:"โลจิสติกส์",uni:"psu.ac.th"},
+{name:"การท่องเที่ยว",uni:"swu.ac.th"},
+{name:"การโรงแรม",uni:"ubu.ac.th"},
+{name:"การค้าระหว่างประเทศ",uni:"nu.ac.th"},
+{name:"ธุรกิจดิจิทัล",uni:"kmitl.ac.th"}
+],
+"ศิลปญี่ปุ่น":[
+{name:"ภาษาญี่ปุ่น",uni:"tu.ac.th"},
+{name:"ล่ามญี่ปุ่น",uni:"chula.ac.th"},
+{name:"ธุรกิจญี่ปุ่น",uni:"ku.ac.th"},
+{name:"การท่องเที่ยวญี่ปุ่น",uni:"mahidol.ac.th"},
+{name:"การบิน",uni:"kmitl.ac.th"},
+{name:"การโรงแรม",uni:"psu.ac.th"},
+{name:"วัฒนธรรมญี่ปุ่น",uni:"swu.ac.th"},
+{name:"การสอนภาษาญี่ปุ่น",uni:"nu.ac.th"},
+{name:"สื่อสารมวลชน",uni:"kku.ac.th"},
+{name:"การค้าญี่ปุ่น",uni:"ubu.ac.th"}
+],
+"ศิลปจีน":[
+{name:"ภาษาจีน",uni:"tu.ac.th"},
+{name:"ล่ามจีน",uni:"chula.ac.th"},
+{name:"ธุรกิจจีน",uni:"ku.ac.th"},
+{name:"โลจิสติกส์จีน",uni:"mahidol.ac.th"},
+{name:"การท่องเที่ยวจีน",uni:"psu.ac.th"},
+{name:"การบิน",uni:"kmitl.ac.th"},
+{name:"วัฒนธรรมจีน",uni:"swu.ac.th"},
+{name:"การค้าระหว่างประเทศ",uni:"nu.ac.th"},
+{name:"สื่อสารจีน",uni:"kku.ac.th"},
+{name:"การโรงแรม",uni:"ubu.ac.th"}
+],
+"ศิลปเกาหลี":[
+{name:"ภาษาเกาหลี",uni:"tu.ac.th"},
+{name:"ธุรกิจเกาหลี",uni:"chula.ac.th"},
+{name:"ล่ามเกาหลี",uni:"ku.ac.th"},
+{name:"การท่องเที่ยวเกาหลี",uni:"mahidol.ac.th"},
+{name:"สื่อบันเทิง",uni:"kku.ac.th"},
+{name:"การบิน",uni:"kmitl.ac.th"},
+{name:"วัฒนธรรมเกาหลี",uni:"swu.ac.th"},
+{name:"การตลาดเกาหลี",uni:"psu.ac.th"},
+{name:"การโรงแรม",uni:"nu.ac.th"},
+{name:"การค้าระหว่างประเทศ",uni:"ubu.ac.th"}
+],
+"ไทยสังคม":[
+{name:"นิติศาสตร์",uni:"chula.ac.th"},
+{name:"รัฐศาสตร์",uni:"tu.ac.th"},
+{name:"สังคมวิทยา",uni:"ku.ac.th"},
+{name:"ภูมิศาสตร์",uni:"mahidol.ac.th"},
+{name:"ประวัติศาสตร์",uni:"swu.ac.th"},
+{name:"โบราณคดี",uni:"kku.ac.th"},
+{name:"การทูต",uni:"nu.ac.th"},
+{name:"สื่อสารมวลชน",uni:"psu.ac.th"},
+{name:"พัฒนาชุมชน",uni:"ubu.ac.th"},
+{name:"การเมืองการปกครอง",uni:"kmitl.ac.th"}
+]
 };
 
-const sel = document.getElementById("stream");
-const res = document.getElementById("results");
+const jobs = [
+"วิศวกร / นักวิชาการเฉพาะทาง",
+"นักวิจัย / นักวิทยาศาสตร์",
+"นักวิเคราะห์ข้อมูล / ระบบ",
+"ผู้จัดการโครงการ",
+"ที่ปรึกษาองค์กร",
+"อาจารย์ / ผู้สอน"
+];
 
-sel.addEventListener("change", () => {
-  res.innerHTML = "";
-  (guides[sel.value] || []).forEach(i => {
-    const d = document.createElement("div");
-    d.className = "card";
-    d.innerHTML = `
-      <h3>${i.faculty}</h3>
-      <p><b>มหาวิทยาลัย:</b> ${i.university}</p>
-      <p><b>เรียนเกี่ยวกับ:</b> ${i.desc}</p>
-      <button onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='block'?'none':'block'">ดูอาชีพ</button>
-      <ul class="jobs">${i.jobs.map(j => `<li>${j}</li>`).join("")}</ul>
-      <p><a href="${i.link}" target="_blank">เว็บไซต์คณะ</a></p>
+const tabs=document.getElementById("tabs");
+const cards=document.getElementById("cards");
+
+function render(track){
+  cards.innerHTML="";
+  data[track].forEach(f=>{
+    const div=document.createElement("div");
+    div.className="card";
+    div.innerHTML=`
+      <img class="uni" src="https://www.google.com/s2/favicons?domain=${f.uni}&sz=64">
+      <h3>${f.name}</h3>
+      <button onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display=='block'?'none':'block'">ดูอาชีพ</button>
+      <div class="jobs">${jobs.join("<br>")}</div>
     `;
-    res.appendChild(d);
+    cards.appendChild(div);
   });
+}
+
+Object.keys(data).forEach((k,i)=>{
+  const b=document.createElement("button");
+  b.textContent=k;
+  if(i==0){b.classList.add("active");render(k);}
+  b.onclick=()=>{
+    document.querySelectorAll(".tabs button").forEach(x=>x.classList.remove("active"));
+    b.classList.add("active");
+    render(k);
+  };
+  tabs.appendChild(b);
 });
 </script>
 
 </body>
 </html>
+
