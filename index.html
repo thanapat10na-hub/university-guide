@@ -23,6 +23,8 @@ select{padding:12px 18px;font-size:17px;border-radius:999px;border:2px solid #16
 ul{padding-left:18px;margin:6px 0}
 .uni-list li{display:flex;align-items:center;margin-bottom:6px}
 .uni-list img{margin-right:8px}
+.uni-list a{text-decoration:none;color:#065f46;display:flex;align-items:center}
+.uni-list a:hover{text-decoration:underline;color:#16a34a}
 </style>
 </head>
 <body>
@@ -47,18 +49,21 @@ ul{padding-left:18px;margin:6px 0}
 <main id="results"></main>
 
 <script>
+// ตัวอย่าง 5 มหาวิทยาลัยไทย พร้อมโลโก้และ URL
 const universitiesSample = [
-  {name:"จุฬาลงกรณ์มหาวิทยาลัย",logo:"https://upload.wikimedia.org/wikipedia/en/5/53/Chulalongkorn_University_Logo.png",location:"กรุงเทพมหานคร"},
-  {name:"มหาวิทยาลัยธรรมศาสตร์",logo:"https://upload.wikimedia.org/wikipedia/en/3/3b/Thammasat_University_Logo.png",location:"ปทุมธานี"},
-  {name:"มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี",logo:"https://upload.wikimedia.org/wikipedia/en/8/87/KMUTT_Logo.png",location:"กรุงเทพมหานคร"},
-  {name:"มหาวิทยาลัยเชียงใหม่",logo:"https://upload.wikimedia.org/wikipedia/en/f/f3/Chiang_Mai_University_Logo.png",location:"เชียงใหม่"},
-  {name:"มหาวิทยาลัยแม่ฟ้าหลวง",logo:"https://upload.wikimedia.org/wikipedia/en/f/f3/Mae_Fah_Luang_University_Logo.png",location:"เชียงราย"}
+  {name:"จุฬาลงกรณ์มหาวิทยาลัย",logo:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Chulalongkorn_University_Seal.png/120px-Chulalongkorn_University_Seal.png",location:"กรุงเทพมหานคร",url:"https://www.chula.ac.th/en/"},
+  {name:"มหาวิทยาลัยธรรมศาสตร์",logo:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Thammasat_University_Logo.svg/120px-Thammasat_University_Logo.svg.png",location:"ปทุมธานี",url:"https://www.tu.ac.th/en/"},
+  {name:"มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี",logo:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/KMUTT_logo.png/120px-KMUTT_logo.png",location:"กรุงเทพมหานคร",url:"https://www.kmutt.ac.th/eng/"},
+  {name:"มหาวิทยาลัยเชียงใหม่",logo:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Chiang_Mai_University_Logo.png/120px-Chiang_Mai_University_Logo.png",location:"เชียงใหม่",url:"https://www.cmu.ac.th/en/"},
+  {name:"มหาวิทยาลัยแม่ฟ้าหลวง",logo:"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Mae_Fah_Luang_University_Logo.png/120px-Mae_Fah_Luang_University_Logo.png",location:"เชียงราย",url:"https://www.mfu.ac.th/en/"}
 ];
 
+// ฟังก์ชันเติมมหาวิทยาลัยให้คณะ
 function addUnis(obj){
   return {...obj,universities:universitiesSample};
 }
 
+// ข้อมูลทุกสายการเรียน
 const data = {
 eng:[
  addUnis({emoji:"🛠️",name:"วิศวกรรมเครื่องกล",about:"ออกแบบเครื่องจักรและพลังงาน",jobs:["วิศวกรเครื่องกล","วิศวกรโรงงาน","วิศวกรยานยนต์"]}),
@@ -153,7 +158,12 @@ sel.onchange=()=>{
         <p><b>มหาวิทยาลัยที่เปิดสอน:</b></p>
         <ul class="uni-list">
           ${f.universities.map(u=>`
-            <li><img src="${u.logo}" class="logo" alt="${u.name} logo">${u.name} (${u.location})</li>
+            <li>
+              <a href="${u.url}" target="_blank">
+                <img src="${u.logo}" class="logo" alt="${u.name} logo">
+                ${u.name} (${u.location})
+              </a>
+            </li>
           `).join("")}
         </ul>
       `;
@@ -172,6 +182,7 @@ back.onclick=()=>{
 </script>
 </body>
 </html>
+
 
 
 
