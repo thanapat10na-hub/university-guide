@@ -24,15 +24,15 @@ ul{padding-left:18px;margin:6px 0}
 
 <header id="header">
   <h1>University Guide for High School</h1>
-  <p>เลือกคณะที่สนใจ</p>
-  <select id="faculty">
-    <option value="">-- เลือกคณะ --</option>
-    <option value="me">วิศวกรรมเครื่องกล</option>
-    <option value="ee">วิศวกรรมไฟฟ้า</option>
-    <option value="cs">วิทยาการคอมพิวเตอร์</option>
-    <option value="ce">วิศวกรรมโยธา</option>
-    <option value="ds">วิทยาการข้อมูล</option>
-    <option value="ba">บริหารธุรกิจ</option>
+  <p>เลือกสายการเรียน ม.ปลาย</p>
+  <select id="stream">
+    <option value="">-- เลือกสาย --</option>
+    <option value="eng">เตรียมวิศวะ</option>
+    <option value="cs">วิทย์คอม</option>
+    <option value="sci">วิทย์–คณิต</option>
+    <option value="mathlang">คณิต–ภาษา</option>
+    <option value="arts">ศิลป์ภาษา</option>
+    <option value="soc">ไทย–สังคม</option>
   </select>
 </header>
 
@@ -41,7 +41,8 @@ ul{padding-left:18px;margin:6px 0}
 
 <script>
 const data = {
-me:{
+eng:[
+{
  name:"วิศวกรรมเครื่องกล",
  about:"ออกแบบเครื่องจักร ระบบพลังงาน และการผลิต",
  jobs:["วิศวกรโรงงาน","วิศวกรยานยนต์","วิศวกรพลังงาน"],
@@ -51,7 +52,7 @@ me:{
   {name:"มจธ.",link:"https://www.me.kmutt.ac.th"}
  ]
 },
-ee:{
+{
  name:"วิศวกรรมไฟฟ้า",
  about:"ระบบไฟฟ้า พลังงาน และระบบควบคุม",
  jobs:["วิศวกรไฟฟ้า","วิศวกรระบบควบคุม"],
@@ -60,16 +61,7 @@ ee:{
   {name:"ลาดกระบัง",link:"https://www.ee.kmitl.ac.th"}
  ]
 },
-cs:{
- name:"วิทยาการคอมพิวเตอร์",
- about:"การเขียนโปรแกรม อัลกอริทึม และ AI",
- jobs:["Software Engineer","AI Engineer","Data Scientist"],
- universities:[
-  {name:"ธรรมศาสตร์",link:"https://cs.tu.ac.th"},
-  {name:"เชียงใหม่",link:"https://www.cs.science.cmu.ac.th"}
- ]
-},
-ce:{
+{
  name:"วิศวกรรมโยธา",
  about:"งานโครงสร้าง ถนน สะพาน และก่อสร้าง",
  jobs:["วิศวกรโยธา","ผู้ควบคุมงานก่อสร้าง"],
@@ -78,27 +70,94 @@ ce:{
   {name:"ขอนแก่น",link:"https://ce.kku.ac.th"}
  ]
 },
-ds:{
+{
+ name:"วิศวกรรมคอมพิวเตอร์",
+ about:"ฮาร์ดแวร์ ซอฟต์แวร์ และระบบฝังตัว",
+ jobs:["Embedded Engineer","Computer Engineer"],
+ universities:[
+  {name:"ธรรมศาสตร์",link:"https://www.cpe.tu.ac.th"},
+  {name:"เชียงใหม่",link:"https://www.cpe.eng.cmu.ac.th"}
+ ]
+},
+{
+ name:"วิศวกรรมสิ่งแวดล้อม",
+ about:"จัดการมลพิษและทรัพยากร",
+ jobs:["Environmental Engineer","ที่ปรึกษาสิ่งแวดล้อม"],
+ universities:[
+  {name:"มหิดล",link:"https://www.eg.mahidol.ac.th"},
+  {name:"เชียงใหม่",link:"https://www.envi.eng.cmu.ac.th"}
+ ]
+},
+{
+ name:"วิศวกรรมพลังงาน",
+ about:"พลังงานทดแทนและการจัดการพลังงาน",
+ jobs:["Energy Engineer","Renewable Energy Specialist"],
+ universities:[
+  {name:"แม่โจ้",link:"https://www.energy.mju.ac.th"},
+  {name:"สุรนารี",link:"https://www.sut.ac.th"}
+ ]
+}
+],
+
+cs:[
+{
+ name:"วิทยาการคอมพิวเตอร์",
+ about:"เขียนโปรแกรม อัลกอริทึม และ AI",
+ jobs:["Software Engineer","AI Engineer","Data Scientist"],
+ universities:[
+  {name:"ธรรมศาสตร์",link:"https://cs.tu.ac.th"},
+  {name:"เชียงใหม่",link:"https://www.cs.science.cmu.ac.th"}
+ ]
+},
+{
  name:"วิทยาการข้อมูล",
- about:"วิเคราะห์ข้อมูลขนาดใหญ่และ AI",
+ about:"วิเคราะห์ข้อมูลขนาดใหญ่",
  jobs:["Data Analyst","Data Scientist"],
  universities:[
   {name:"มหิดล",link:"https://mahidol.ac.th"},
   {name:"บางมด",link:"https://www.kmutt.ac.th"}
  ]
 },
-ba:{
- name:"บริหารธุรกิจ",
- about:"การจัดการ การตลาด การเงิน และผู้ประกอบการ",
- jobs:["นักการตลาด","นักวิเคราะห์ธุรกิจ","ผู้ประกอบการ"],
+{
+ name:"เทคโนโลยีสารสนเทศ",
+ about:"ระบบเครือข่ายและความปลอดภัย",
+ jobs:["IT Support","Network Engineer"],
  universities:[
-  {name:"ธรรมศาสตร์",link:"https://www.tbs.tu.ac.th"},
-  {name:"จุฬาฯ",link:"https://www.acc.chula.ac.th"}
+  {name:"ลาดกระบัง",link:"https://www.it.kmitl.ac.th"},
+  {name:"ขอนแก่น",link:"https://www.kku.ac.th"}
+ ]
+},
+{
+ name:"ปัญญาประดิษฐ์",
+ about:"Machine Learning และระบบอัจฉริยะ",
+ jobs:["AI Engineer","ML Engineer"],
+ universities:[
+  {name:"เชียงใหม่",link:"https://www.cmu.ac.th"},
+  {name:"ธรรมศาสตร์",link:"https://tu.ac.th"}
+ ]
+},
+{
+ name:"ความปลอดภัยไซเบอร์",
+ about:"ป้องกันระบบและข้อมูล",
+ jobs:["Cybersecurity Analyst","SOC Engineer"],
+ universities:[
+  {name:"มหิดล",link:"https://mahidol.ac.th"},
+  {name:"บางมด",link:"https://www.kmutt.ac.th"}
+ ]
+},
+{
+ name:"เกมและสื่อดิจิทัล",
+ about:"พัฒนาเกมและอินเตอร์แอคทีฟมีเดีย",
+ jobs:["Game Developer","Digital Artist"],
+ universities:[
+  {name:"รังสิต",link:"https://www.rsu.ac.th"},
+  {name:"ศรีปทุม",link:"https://www.spu.ac.th"}
  ]
 }
+]
 };
 
-const sel=document.getElementById("faculty");
+const sel=document.getElementById("stream");
 const res=document.getElementById("results");
 const back=document.getElementById("backBtn");
 const header=document.getElementById("header");
@@ -109,23 +168,24 @@ sel.onchange=()=>{
   setTimeout(()=>{
     header.style.display="none";
     back.style.display="inline-block";
-    const f=data[sel.value];
-    const d=document.createElement("div");
-    d.className="card";
-    d.innerHTML=`
-      <h3>${f.name}</h3>
-      <p><b>เรียนเกี่ยวกับ:</b> ${f.about}</p>
-      <p><b>อาชีพในอนาคต:</b></p>
-      <ul>${f.jobs.map(j=>`<li>${j}</li>`).join("")}</ul>
-      <p><b>เปิดสอนที่:</b></p>
-      <ul>${f.universities.map(u=>`
-        <li>
-          <img class="logo" src="https://www.google.com/s2/favicons?sz=64&domain=${u.link}">
-          <a href="${u.link}" target="_blank">${u.name}</a>
-        </li>`).join("")}
-      </ul>
-    `;
-    res.appendChild(d);
+    data[sel.value].forEach(f=>{
+      const d=document.createElement("div");
+      d.className="card";
+      d.innerHTML=`
+        <h3>${f.name}</h3>
+        <p><b>เรียนเกี่ยวกับ:</b> ${f.about}</p>
+        <p><b>อาชีพในอนาคต:</b></p>
+        <ul>${f.jobs.map(j=>`<li>${j}</li>`).join("")}</ul>
+        <p><b>เปิดสอนที่:</b></p>
+        <ul>${f.universities.map(u=>`
+          <li>
+            <img class="logo" src="https://www.google.com/s2/favicons?sz=64&domain=${u.link}">
+            <a href="${u.link}" target="_blank">${u.name}</a>
+          </li>`).join("")}
+        </ul>
+      `;
+      res.appendChild(d);
+    });
   },300);
 };
 
