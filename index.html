@@ -5,126 +5,207 @@
   <title>🎓 University Guide for High School</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="คู่มือเลือกเรียนต่อมหาวิทยาลัยสำหรับนักเรียนม.ปลาย ตามสายการเรียน">
-  <link rel="icon" href="image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(120deg, #e0f2ff, #fefefe);
+      font-family: 'Segoe UI', 'Sukhumvit Set', 'Helvetica Neue', sans-serif;
+      background: linear-gradient(125deg, #e0f2ff, #f0f9ff, #fefefe);
       text-align: center;
-      padding: 30px;
+      padding: 20px 15px;
+      color: #1e293b;
+      line-height: 1.6;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23ffffff" opacity="0.02"/><path d="M0,0 L100,100 M100,0 L0,100" stroke="%23e2e8f0" stroke-width="0.5" opacity="0.3"/></svg>');
+      pointer-events: none;
+      z-index: -1;
     }
     header {
-      background: #16a34a;
+      background: #0d9488;
       color: #fff;
-      padding: 20px;
+      padding: 24px 20px;
       border-radius: 20px;
-      box-shadow: 0 10px 20px rgba(0,0,0,.15);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+      position: relative;
+      overflow: hidden;
+      max-width: 700px;
+      margin: 0 auto 25px;
+    }
+    header::after {
+      content: "";
+      position: absolute;
+      top: -50px; right: -50px;
+      width: 150px; height: 150px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
     }
     h1 {
-      margin: 0;
-      font-size: 2em;
+      margin: 0 0 8px;
+      font-size: 1.8em;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    h1 svg {
+      width: 26px;
+      height: 26px;
     }
     select {
       padding: 12px 18px;
       font-size: 17px;
       border-radius: 999px;
-      border: 2px solid #16a34a;
+      border: 2px solid #0d9488;
       background: #ecfdf5;
       color: #065f46;
       font-weight: 600;
       cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      transition: all 0.2s;
+      width: 90%;
+      max-width: 400px;
+    }
+    select:hover {
+      border-color: #067d72;
+      transform: scale(1.02);
     }
     #results {
-      margin-top: 20px;
+      margin-top: 10px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 15px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
     }
     .card {
       background: #fff;
-      padding: 15px;
-      border-radius: 18px;
-      box-shadow: 0 6px 12px rgba(0,0,0,.1);
+      padding: 18px;
+      border-radius: 16px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
       text-align: left;
       animation: fadeUp .4s ease both;
+      border: 1px solid #e2e8f0;
+      transition: all 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.08);
+      border-color: #cbd5e1;
     }
     .back {
       margin: 15px auto;
       display: none;
-      background: #16a34a;
+      background: #0d9488;
       color: white;
       border: none;
-      padding: 6px 14px;
+      padding: 8px 18px;
       border-radius: 999px;
-      font-size: 14px;
+      font-size: 15px;
       cursor: pointer;
+      font-weight: 600;
+      box-shadow: 0 3px 8px rgba(13,148,136,0.3);
+      transition: all 0.2s;
+    }
+    .back:hover {
+      background: #0b7a70;
+      transform: scale(1.03);
     }
     .toggle {
-      margin-top: 8px;
-      background: #ecfdf5;
-      border: 1px solid #16a34a;
+      margin-top: 12px;
+      background: #f0fdfa;
+      border: 1px solid #0d9488;
       color: #065f46;
       border-radius: 999px;
-      padding: 6px 14px;
+      padding: 8px 16px;
       cursor: pointer;
       font-size: 14px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .toggle:hover {
+      background: #d1fae5;
+      transform: scale(1.02);
     }
     .unilist {
       max-height: 0;
       overflow: hidden;
       transition: max-height .4s ease;
-      padding-left: 18px;
+      padding-left: 20px;
+      margin-top: 8px;
     }
     .unilist.open {
       max-height: 600px;
-      margin-top: 8px;
     }
-    .logo {
-      width: 26px;
-      height: 26px;
-      object-fit: contain;
-      vertical-align: middle;
-      margin-right: 6px;
+    .tip-box {
+      background: #dbeafe;
+      border-left: 4px solid #3b82f6;
+      padding: 14px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      text-align: left;
+      font-size: 0.95em;
+      line-height: 1.5;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
     }
-    .fadeOut {
-      animation: fadeOut .3s both;
+    .tip-box b {
+      color: #1d4ed8;
     }
-    .fadeIn {
-      animation: fadeIn .3s both;
+    ul {
+      padding-left: 22px;
+      margin: 8px 0;
+    }
+    li {
+      margin: 4px 0;
+    }
+    .unilist a {
+      color: #0d9488;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .unilist a:hover {
+      text-decoration: underline;
+    }
+    .footer-note {
+      margin-top: 30px;
+      font-size: 0.85em;
+      color: #64748b;
+      max-width: 700px;
+      margin: 30px auto 0;
     }
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: none; }
     }
-    @keyframes fadeOut {
-      from { opacity: 1; }
-      to { opacity: 0; }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    ul {
-      padding-left: 18px;
-      margin: 6px 0;
-    }
-    .unilist a {
-      color: #0d9488;
-      text-decoration: none;
-      font-weight: 500;
-    }
-    .unilist a:hover {
-      text-decoration: underline;
+    @media (max-width: 480px) {
+      h1 { font-size: 1.5em; }
+      select { font-size: 16px; padding: 10px 16px; }
+      .card { padding: 14px; }
     }
   </style>
 </head>
 <body>
 
 <header id="header">
-  <h1>🎓 University Guide for High School</h1>
-  <p>เลือกสายการเรียน ม.ปลาย</p>
+  <h1>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+      <circle cx="12" cy="10" r="2"/><path d="M9.5 17a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/>
+    </svg>
+    University Guide for High School
+  </h1>
+  <p>เลือกสายการเรียน ม.ปลาย เพื่อดูสาขาที่เรียนได้ + มหาวิทยาลัยที่เปิดรับ</p>
+  <small class="footer-note">
+    💡 ข้อมูลอัปเดต TCAS 68 | คลิกชื่อมหาวิทยาลัยเพื่อไปเว็บหลัก
+  </small>
   <select id="stream">
-    <option value="">-- เลือกสาย --</option>
+    <option value="">-- เลือกสายการเรียน --</option>
     <option value="eng">⚙️ เตรียมวิศวะ</option>
     <option value="cs">💻 วิทย์คอม</option>
     <option value="sci">🔬 วิทย์–คณิต</option>
@@ -138,6 +219,11 @@
 
 <button class="back" id="backBtn">⬅ ย้อนกลับ</button>
 <main id="results"></main>
+
+<div class="footer-note">
+  🎓 โครงการนี้จัดทำเพื่อช่วยนักเรียน ม.ปลาย ในการวางแผนการศึกษาต่อ<br>
+  © 2026 | จัดทำโดย นักเรียนระดับมัธยมศึกษา
+</div>
 
 <script>
 const data = {
@@ -271,7 +357,7 @@ const data = {
       {name:"ม.เกษตรศาสตร์",url:"https://www.ku.ac.th"},
       {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"}
     ]},
-    // ✅ เพิ่มใหม่ใน sci: วิศวะ
+    // ✅ เพิ่มวิศวะในสายวิทย์-คณิต
     {emoji:"🏗️",name:"วิศวกรรมโยธา",about:"ออกแบบโครงสร้างและก่อสร้าง",jobs:["วิศวกรโยธา","Project Manager","Site Engineer"],universities:[
       {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
       {name:"ม.เกษตรศาสตร์",url:"https://www.ku.ac.th"},
@@ -498,16 +584,42 @@ sel.onchange = () => {
   setTimeout(() => {
     header.style.display = "none";
     back.style.display = "inline-block";
-    res.innerHTML = ""; // ล้างก่อนเสมอ
+    res.innerHTML = "";
+
+    // 📌 แถบคำแนะนำ
+    const streamName = {
+      eng: "วิศวะ", cs: "วิทย์คอม", sci: "วิทย์–คณิต", mathlang: "คณิต–ภาษา",
+      jp: "ศิลป์–ญี่ปุ่น", cn: "ศิลป์–จีน", kr: "ศิลป์–เกาหลี", soc: "ไทย–สังคม"
+    }[sel.value];
+
+    const tip = {
+      eng: "วิศวะมักใช้ PAT1 + PAT3 + วิชาสามัญ (คณิต/ฟิสิกส์)",
+      cs: "เน้น PAT1 + คณิต1 + อังกฤษ",
+      sci: "แพทย์/วิศวะ: ต้อง PAT1, PAT2, วิชาสามัญวิทย์",
+      mathlang: "เศรษฐศาสตร์/บริหาร: ใช้คณิต1 + อังกฤษ + สังคม",
+      jp: "ภาษาญี่ปุ่นใช้คะแนน JLPT N3 ขึ้นไป ช่วยเพิ่มโอกาส",
+      cn: "ภาษาจีนใช้คะแนน HSK ระดับ 3-4 เป็นข้อได้เปรียบ",
+      kr: "ภาษาเกาหลีใช้ TOPIK Level 3+ ช่วยในการสมัครทุน",
+      soc: "นิติ/รัฐศาสตร์: ใช้คณิต1 + อังกฤษ + สังคม"
+    }[sel.value];
+
+    const tipBox = document.createElement("div");
+    tipBox.className = "tip-box";
+    tipBox.innerHTML = `📌 <b>คำแนะนำสำหรับสาย ${streamName}:</b> ${tip}`;
+    res.appendChild(tipBox);
+
+    // สร้างการ์ด
     data[sel.value].forEach(f => {
       const d = document.createElement("div");
       d.className = "card";
       d.innerHTML = `
         <h3>${f.emoji} ${f.name}</h3>
-        <p><b>เรียนเกี่ยวกับ:</b> ${f.about}</p>
-        <p><b>อาชีพในอนาคต:</b></p>
-        <ul>${f.jobs.map(j => `<li>${j}</li>`).join("")}</ul>
-        <button class="toggle" onclick="toggleUni(this)">📍 ดูมหาวิทยาลัยที่เปิดสอน</button>
+        <p><b>📚 เรียนเกี่ยวกับ:</b> ${f.about}</p>
+        <p><b>🎯 อาชีพในอนาคต:</b></p>
+        <ul>${f.jobs.map(j => `<li>🔸 ${j}</li>`).join("")}</ul>
+        <button class="toggle" onclick="toggleUni(this)">
+          🏛️ ดูมหาวิทยาลัยที่เปิดสอน
+        </button>
         <div class="unilist">
           <ul>${f.universities.map(u => `<li>🎓 <a href="${u.url}" target="_blank">${u.name}</a></li>`).join("")}</ul>
         </div>
@@ -521,9 +633,11 @@ back.onclick = () => {
   res.innerHTML = "";
   back.style.display = "none";
   header.style.display = "block";
-  header.classList.remove("fadeOut");
   header.classList.add("fadeIn");
-  setTimeout(() => header.classList.remove("fadeIn"), 300);
+  setTimeout(() => {
+    header.classList.remove("fadeIn");
+    header.classList.remove("fadeOut");
+  }, 300);
   sel.value = "";
 };
 
@@ -531,7 +645,6 @@ function toggleUni(btn) {
   const list = btn.nextElementSibling;
   const isOpen = list.classList.contains('open');
   
-  // ซ่อนทุก unilist ก่อน
   document.querySelectorAll('.unilist').forEach(el => {
     el.classList.remove('open');
     el.style.maxHeight = '0px';
@@ -549,16 +662,3 @@ function toggleUni(btn) {
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
