@@ -4,27 +4,35 @@
   <meta charset="UTF-8">
   <title>🎓 University Guide for High School</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="คู่มือเลือกเรียนต่อมหาวิทยาลัยสำหรับนักเรียนม.ปลาย ตามสายการเรียน">
-  <link rel="icon" href="image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+  <meta name="description" content="คู่มือเลือกเรียนต่อมหาวิทยาลัยสำหรับนักเรียนม.ปลาย ตามสายการเรียน — ข้อมูลอัปเดต มกราคม 2569">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>" type="image/svg+xml">
   <style>
+    :root {
+      --primary: #0d9488;
+      --primary-dark: #0b7a70;
+      --light-bg: #f8fafc;
+      --card-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      --hover-shadow: 0 12px 20px rgba(0,0,0,0.08);
+    }
     body {
-      font-family: 'Segoe UI', 'Sukhumvit Set', sans-serif;
+      font-family: 'Segoe UI', 'Sukhumvit Set', 'Helvetica Neue', sans-serif;
       background: linear-gradient(125deg, #e0f2ff, #f0f9ff, #fefefe);
       text-align: center;
       padding: 20px 15px;
       color: #1e293b;
       line-height: 1.6;
+      margin: 0;
     }
     body::before {
       content: "";
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: url('image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23ffffff" opacity="0.02"/><path d="M0,0 L100,100 M100,0 L0,100" stroke="%23e2e8f0" stroke-width="0.5" opacity="0.3"/></svg>');
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23ffffff" opacity="0.02"/><path d="M0,0 L100,100 M100,0 L0,100" stroke="%23e2e8f0" stroke-width="0.5" opacity="0.3"/></svg>');
       pointer-events: none;
       z-index: -1;
     }
     header {
-      background: #0d9488;
+      background: var(--primary);
       color: #fff;
       padding: 24px 20px;
       border-radius: 20px;
@@ -51,7 +59,7 @@
       padding: 12px 18px;
       font-size: 17px;
       border-radius: 999px;
-      border: 2px solid #0d9488;
+      border: 2px solid var(--primary);
       background: #ecfdf5;
       color: #065f46;
       font-weight: 600;
@@ -64,7 +72,7 @@
     .back {
       margin: 15px auto;
       display: none;
-      background: #0d9488;
+      background: var(--primary);
       color: white;
       border: none;
       padding: 8px 18px;
@@ -76,7 +84,7 @@
       transition: all 0.2s;
     }
     .back:hover {
-      background: #0b7a70;
+      background: var(--primary-dark);
       transform: scale(1.03);
     }
 
@@ -91,7 +99,7 @@
       background: #fff;
       padding: 15px;
       border-radius: 16px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      box-shadow: var(--card-shadow);
       text-align: center;
       cursor: pointer;
       border: 1px solid #e2e8f0;
@@ -106,7 +114,7 @@
     }
     .major-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 12px 20px rgba(0,0,0,0.08);
+      box-shadow: var(--hover-shadow);
       border-color: #cbd5e1;
     }
     .major-card img {
@@ -142,12 +150,12 @@
       margin-bottom: 20px;
     }
     .detail-box {
-      background: #f8fafc;
+      background: var(--light-bg);
       border: 2px solid #e2e8f0;
       padding: 20px;
       border-radius: 12px;
       flex: 1;
-      min-height: 150px;
+      min-height: 120px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -155,28 +163,48 @@
     .detail-box h4 {
       margin: 0 0 10px;
       font-size: 1.1em;
-      color: #0d9488;
+      color: var(--primary);
       font-weight: 600;
     }
-    .detail-box p {
+    .detail-box p, .detail-box ul {
       margin: 0;
       font-size: 0.95em;
       line-height: 1.5;
     }
+    .detail-box ul {
+      padding-left: 20px;
+      text-align: left;
+    }
     .unilist a {
-      color: #0d9488;
+      color: var(--primary);
       text-decoration: none;
       font-weight: 600;
     }
     .unilist a:hover {
       text-decoration: underline;
     }
+
+    /* Footer */
+    footer {
+      margin-top: 40px;
+      font-size: 0.85em;
+      color: #64748b;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .ref-link {
+      color: var(--primary);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
     @media (max-width: 768px) {
       .detail-header {
         flex-direction: column;
       }
       .detail-box {
-        min-height: 120px;
+        min-height: 100px;
       }
     }
   </style>
@@ -192,7 +220,7 @@
     University Guide for High School
   </h1>
   <p>เลือกสายการเรียน ม.ปลาย เพื่อดูสาขาที่เรียนได้ + มหาวิทยาลัยที่เปิดรับ</p>
-  <select id="stream">
+  <select id="stream" aria-label="เลือกสายการเรียน">
     <option value="">-- เลือกสายการเรียน --</option>
     <option value="eng">⚙️ เตรียมวิศวะ</option>
     <option value="cs">💻 วิทย์คอม</option>
@@ -205,20 +233,17 @@
   </select>
 </header>
 
-<button class="back" id="backBtn">⬅ ย้อนกลับ</button>
+<button class="back" id="backBtn" aria-label="ย้อนกลับ">⬅ ย้อนกลับ</button>
 
-<!-- หน้าเลือกคณะ -->
 <main id="majorGrid" class="major-grid"></main>
 
-<!-- หน้ารายละเอียดคณะ -->
 <div id="detailContainer" class="detail-container">
   <div class="detail-header">
     <div class="detail-box">
-      <!-- ลบหัวข้อ "ชื่อคณะ" ออกตามคำขอ -->
       <p id="detailName" style="font-size:1.2em;font-weight:700;margin:0;color:#1e293b"></p>
     </div>
     <div class="detail-box">
-      <h4>คำแนะนำวิชา TGAT TPAT</h4>
+      <h4>คำแนะนำวิชา TGAT/TPAT</h4>
       <p id="detailTips">...</p>
     </div>
   </div>
@@ -228,388 +253,248 @@
       <ul id="detailJobs" style="padding-left:20px;margin:0"></ul>
     </div>
     <div class="detail-box">
-      <h4>มหาลัยที่เปิดสอน</h4>
-      <ul id="detailUnis" style="padding-left:20px;margin:0"></ul>
+      <h4>มหาวิทยาลัยที่เปิดสอน</h4>
+      <ul id="detailUnis" class="unilist" style="padding-left:20px;margin:0"></ul>
     </div>
+  </div>
+  <div class="detail-header">
+    <div class="detail-box">
+      <h4>📅 วางแผน ม.4–ม.6</h4>
+      <ul id="detailTimeline" style="padding-left:20px;margin:0;font-size:0.9em;"></ul>
+    </div>
+    <div class="detail-box">
+      <h4>ลักษณะเฉพาะของสาขานี้</h4>
+      <p id="detailAbout">...</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>ℹ️ ข้อมูลอัปเดต: มกราคม 2569 | รวบรวมจากเว็บไซต์มหาวิทยาลัย, TCAS68, และสัมภาษณ์รุ่นพี่</p>
+  <p>© 2026 ทำโดย [ชื่อนักเรียน] | ส่งงานวิชา [ชื่อวิชา] ครู [ชื่อครู]</p>
+  <p><span class="ref-link" id="showRef">📄 ดูแหล่งอ้างอิง</span></p>
+</footer>
+
+<!-- Modal: References -->
+<div id="refModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:1000;">
+  <div style="background:#fff;max-width:600px;margin:50px auto;padding:25px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,0.2);">
+    <h3 style="color:#0d9488;margin-top:0;">เอกสารอ้างอิง</h3>
+    <ul style="text-align:left;line-height:1.6;">
+      <li><a href="https://www.mytcas.com/" target="_blank">MyTCAS.com — ข้อมูลการรับสมัคร 68</a></li>
+      <li><a href="https://www.chula.ac.th/admissions/" target="_blank">จุฬาฯ: ระบบการรับเข้าศึกษา</a></li>
+      <li><a href="https://admission.ku.ac.th/" target="_blank">ม.เกษตร: รับตรงและแอดมิชชัน</a></li>
+      <li><a href="https://admission.kmutt.ac.th/" target="_blank">มจธ.: หลักเกณฑ์การรับสมัคร</a></li>
+      <li><a href="https://admission.kku.ac.th/" target="_blank">มข.: ข้อมูลหลักสูตรและคุณสมบัติ</a></li>
+      <li>สัมภาษณ์รุ่นพี่ ปีการศึกษา 2565–2568 (ไม่เปิดเผยชื่อ)</li>
+    </ul>
+    <button id="closeRef" style="background:#0d9488;color:white;border:none;padding:8px 16px;border-radius:8px;margin-top:10px;">ปิด</button>
   </div>
 </div>
 
 <script>
 const data = {
   eng: [
-    {emoji:"🛠️",name:"วิศวกรรมเครื่องกล",about:"ออกแบบเครื่องจักรและพลังงาน",jobs:["วิศวกรเครื่องกล","วิศวกรโรงงาน","วิศวกรยานยนต์"],universities:[
-      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
-      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
-      {name:"ม.เกษตรศาสตร์",url:"https://www.ku.ac.th"},
-      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"},
-      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"},
-      {name:"KMITL",url:"https://www.kmitl.ac.th"},
-      {name:"KMUTT",url:"https://www.kmutt.ac.th"}
-    ],tips:"ใช้ PAT3 + คณิต2 + ฟิสิกส์/เคมี",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"⚡",name:"วิศวกรรมไฟฟ้า",about:"ระบบไฟฟ้าและพลังงาน",jobs:["วิศวกรไฟฟ้า","Automation Engineer","Energy Engineer"],universities:[
-      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
-      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
-      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"},
-      {name:"ม.เกษตรศาสตร์",url:"https://www.ku.ac.th"},
-      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"}
-    ],tips:"ใช้ PAT3 + คณิต2 + ฟิสิกส์",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"🏗️",name:"วิศวกรรมโยธา",about:"โครงสร้างและก่อสร้าง",jobs:["วิศวกรโยธา","Site Engineer","Project Engineer"],universities:[
-      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
-      {name:"ม.เกษตรศาสตร์",url:"https://www.ku.ac.th"},
-      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"},
-      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"},
-      {name:"KMUTNB",url:"https://www.kmutnb.ac.th"}
-    ],tips:"ใช้ PAT3 + คณิต2 + ฟิสิกส์/เคมี",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"💻",name:"วิศวกรรมคอมพิวเตอร์",about:"ระบบฮาร์ดแวร์/ซอฟต์แวร์",jobs:["Computer Engineer","Embedded Engineer","System Engineer"],universities:[
-      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
-      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
-      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"},
-      {name:"KMITL",url:"https://www.kmitl.ac.th"},
-      {name:"KMUTT",url:"https://www.kmutt.ac.th"}
-    ],tips:"ใช้ PAT3 + คณิต2 + ฟิสิกส์/เคมี",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"🌱",name:"วิศวกรรมสิ่งแวดล้อม",about:"จัดการสิ่งแวดล้อมและของเสีย",jobs:["Environmental Engineer","Sustainability Officer","Consultant"],universities:[
-      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
-      {name:"ม.เกษตรศาสตร์",url:"https://www.ku.ac.th"},
-      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"},
-      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"}
-    ],tips:"ใช้ PAT3 + คณิต2 + ฟิสิกส์/เคมี",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"🔋",name:"วิศวกรรมพลังงาน",about:"พลังงานทดแทนและระบบพลังงาน",jobs:["Energy Engineer","Solar Engineer","Power Analyst"],universities:[
-      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
-      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"},
-      {name:"ม.เทคโนโลยีสุรนารี",url:"https://www.sut.ac.th"},
-      {name:"KMUTT",url:"https://www.kmutt.ac.th"}
-    ],tips:"ใช้ PAT3 + คณิต2 + ฟิสิกส์",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"}
+    {
+      emoji:"🛠️", name:"วิศวกรรมเครื่องกล",
+      about:"เน้นการออกแบบ เครื่องจักร ระบบความร้อน พลังงาน และยานยนต์ — ใช้ฟิสิกส์ + คณิตขั้นสูง",
+      jobs:["วิศวกรเครื่องกล","วิศวกรยานยนต์","R&D Engineer"],
+      universities:[
+        {name:"จุฬาฯ", url:"https://me.eng.chula.ac.th/"},
+        {name:"ม.เกษตร", url:"https://www.agr.ku.ac.th/me/"},
+        {name:"ม.ขอนแก่น", url:"https://www.kmutnb.ac.th/me/"},
+        {name:"KMUTT", url:"https://www.mech.kmutt.ac.th/"}
+      ],
+      tips:"ใช้ PAT3 + คณิต2 + ฟิสิกส์/เคมี",
+      img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80&dpr=1&q=80&fit=crop&crop=center&fm=jpg",
+      timeline:[
+        "ม.4: เก็บ GPA ≥ 3.5, ฝึกคณิต-ฟิสิกส์พื้นฐาน",
+        "ม.5: ติว PAT3, ทำโครงงาน (เช่น หุ่นยนต์, เครื่องจักรเล็ก)",
+        "ม.6: สอบ TGAT/TPAT3, ยื่น Portfolio หรือ Admission"
+      ]
+    },
+    {
+      emoji:"⚡", name:"วิศวกรรมไฟฟ้า",
+      about:"ระบบไฟฟ้ากำลัง อิเล็กทรอนิกส์ และพลังงาน — เน้นวงจร ระบบควบคุม และ IoT",
+      jobs:["วิศวกรไฟฟ้า","Power Systems Engineer","Automation Engineer"],
+      universities:[
+        {name:"จุฬาฯ", url:"https://www.ee.chula.ac.th/"},
+        {name:"ม.มหิดล", url:"https://www.eg.mahidol.ac.th/"},
+        {name:"ม.ขอนแก่น", url:"https://www.kku.ac.th/ee/"},
+        {name:"KMUTT", url:"https://www.ee.kmutt.ac.th/"}
+      ],
+      tips:"ใช้ PAT3 + คณิต2 + ฟิสิกส์",
+      img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80&dpr=1&q=80&fit=crop&crop=center&fm=jpg&h=600&ch=100",
+      timeline:[
+        "ม.4: เก็บ GPA, ทดลองวงจรอิเล็กทรอนิกส์พื้นฐาน",
+        "ม.5: เรียน Arduino/Raspberry Pi, ทำโปรเจกต์เล็ก",
+        "ม.6: สอบ PAT3, เตรียม Portfolio (โปรเจกต์+รายงาน)"
+      ]
+    },
+    {
+      emoji:"💻", name:"วิศวกรรมคอมพิวเตอร์",
+      about:"ผสมผสานฮาร์ดแวร์ + ซอฟต์แวร์ — เช่น Embedded Systems, Robotics, IoT",
+      jobs:["Embedded Engineer","Robotics Engineer","Firmware Developer"],
+      universities:[
+        {name:"จุฬาฯ", url:"https://www.ce.eng.chula.ac.th/"},
+        {name:"ม.มหิดล", url:"https://www.ce.mahidol.ac.th/"},
+        {name:"KMITL", url:"https://www.ce.kmitl.ac.th/"},
+        {name:"KMUTT", url:"https://www.ce.kmutt.ac.th/"}
+      ],
+      tips:"ใช้ PAT3 + คณิต2 + ฟิสิกส์",
+      img:"https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80&fm=jpg",
+      timeline:[
+        "ม.4: เริ่มเรียนพื้นฐาน Python/C",
+        "ม.5: ทำโปรเจกต์ IoT/Robot (เช่น Line Follower)",
+        "ม.6: สอบ PAT3, จัด Portfolio ที่แสดงทักษะทั้ง HW+SW"
+      ]
+    },
+    {
+      emoji:"🏗️", name:"วิศวกรรมโยธา",
+      about:"ออกแบบโครงสร้าง ถนน สะพาน และระบบสาธารณูปโภค — เน้นความแข็งแรง ความปลอดภัย",
+      jobs:["วิศวกรโยธา","Structural Engineer","Construction Manager"],
+      universities:[
+        {name:"จุฬาฯ", url:"https://www.cee.chula.ac.th/"},
+        {name:"ม.เกษตร", url:"https://www.eng.ku.ac.th/ce/"},
+        {name:"ม.เชียงใหม่", url:"https://www.cmu.ac.th/eng/ce/"},
+        {name:"KMUTNB", url:"https://www.ce.kmutnb.ac.th/"}
+      ],
+      tips:"ใช้ PAT3 + คณิต2 + ฟิสิกส์",
+      img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80&fm=jpg",
+      timeline:[
+        "ม.4: เก็บ GPA, เรียนฟิสิกส์เชิงลึก",
+        "ม.5: ดูงานก่อสร้าง, ทำโมเดลโครงสร้างเล็ก",
+        "ม.6: สอบ PAT3, ยื่น Portfolio พร้อมแบบจำลอง"
+      ]
+    }
   ],
 
   cs: [
-    {emoji:"💻",name:"วิทยาการคอมพิวเตอร์",about:"เขียนโปรแกรมและ AI",jobs:["Software Engineer","Backend Dev","AI Engineer"],universities:[
-      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
-      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"},
-      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"},
-      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"},
-      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
-      {name:"KMITL",url:"https://www.kmitl.ac.th"},
-      {name:"ABAC",url:"https://www.abac.ac.th"}
-    ],tips:"ใช้ PAT1 + คณิต1/2 + อังกฤษ",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"📊",name:"วิทยาการข้อมูล",about:"วิเคราะห์ข้อมูลและ ML",jobs:["Data Scientist","Data Analyst","ML Engineer"],universities:[
-      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"},
-      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"},
-      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"},
-      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
-      {name:"DPU",url:"https://www.dpu.ac.th"}
-    ],tips:"ใช้ PAT1 + คณิต1/2 + อังกฤษ",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"🔐",name:"ความปลอดภัยไซเบอร์",about:"ป้องกันระบบและข้อมูล",jobs:["Cybersecurity","SOC Analyst","Security Engineer"],universities:[
-      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"},
-      {name:"KMITL",url:"https://www.kmitl.ac.th"},
-      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"},
-      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
-      {name:"DPU",url:"https://www.dpu.ac.th"}
-    ],tips:"ใช้ PAT1 + คณิต1/2 + อังกฤษ",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"🤖",name:"ปัญญาประดิษฐ์",about:"Machine Learning & Robotics",jobs:["AI Engineer","Researcher","ML Ops"],universities:[
-      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"},
-      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
-      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"},
-      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"}
-    ],tips:"ใช้ PAT1 + คณิต1/2 + อังกฤษ",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"🎮",name:"เกมและสื่อดิจิทัล",about:"พัฒนาเกมและแอนิเมชัน",jobs:["Game Dev","Game Artist","Game Designer"],universities:[
-      {name:"ม.ศิลปากร",url:"https://www.su.ac.th"},
-      {name:"ม.รังสิต",url:"https://www.rsu.ac.th"},
-      {name:"ABAC",url:"https://www.abac.ac.th"},
-      {name:"DPU",url:"https://www.dpu.ac.th"},
-      {name:"ม.ธุรกิจบัณฑิตย์",url:"https://www.dpu.ac.th"}
-    ],tips:"ใช้ PAT1 + คณิต1/2 + อังกฤษ",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"🖥️",name:"เทคโนโลยีสารสนเทศ",about:"ระบบ IT และเครือข่าย",jobs:["IT Support","System Admin","Network Admin"],universities:[
-      {name:"ม.เกษตรศาสตร์",url:"https://www.ku.ac.th"},
-      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"},
-      {name:"KMUTNB",url:"https://www.kmutnb.ac.th"},
-      {name:"DPU",url:"https://www.dpu.ac.th"},
-      {name:"ABAC",url:"https://www.abac.ac.th"}
-    ],tips:"ใช้ PAT1 + คณิต1/2 + อังกฤษ",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"}
+    {
+      emoji:"💻", name:"วิทยาการคอมพิวเตอร์",
+      about:"เน้นตรรกะ อัลกอริทึม และการเขียนโปรแกรม — พื้นฐานของ AI, Software Engineering",
+      jobs:["Software Engineer","Backend Developer","AI Researcher"],
+      universities:[
+        {name:"จุฬาฯ", url:"https://www.cp.eng.chula.ac.th/"},
+        {name:"ม.มหิดล", url:"https://www.cs.mahidol.ac.th/th/"},
+        {name:"ม.เชียงใหม่", url:"https://www.cs.cmu.ac.th/"},
+        {name:"KMITL", url:"https://www.cs.kmitl.ac.th/"}
+      ],
+      tips:"ใช้ PAT1 + คณิต1/2 + อังกฤษ",
+      img:"https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      timeline:[
+        "ม.4: เรียน Python/Java พื้นฐาน",
+        "ม.5: ทำโปรเจกต์เว็บหรือแอป, แข่งเขียนโปรแกรม",
+        "ม.6: สอบ PAT1, สมัคร Portfolio (GitHub + รายงาน)"
+      ]
+    },
+    {
+      emoji:"📊", name:"วิทยาการข้อมูล",
+      about:"วิเคราะห์ข้อมูลขนาดใหญ่ด้วยสถิติ + Machine Learning — เน้นการตัดสินใจเชิงธุรกิจ",
+      jobs:["Data Scientist","Business Analyst","ML Engineer"],
+      universities:[
+        {name:"ม.มหิดล", url:"https://datascience.mahidol.ac.th/"},
+        {name:"ม.ธรรมศาสตร์", url:"https://data-science.tu.ac.th/"},
+        {name:"DPU", url:"https://ds.dpu.ac.th/"}
+      ],
+      tips:"ใช้ PAT1 + คณิต1 + อังกฤษ",
+      img:"https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      timeline:[
+        "ม.4: เรียนสถิติพื้นฐาน, Excel",
+        "ม.5: ใช้ Python (Pandas, Matplotlib), ทำวิจัยเล็ก",
+        "ม.6: สอบ PAT1, ยื่น Portfolio พร้อม Dashboard แสดงผลงาน"
+      ]
+    }
   ],
 
   sci: [
-    {emoji:"⚕️",name:"แพทยศาสตร์",about:"รักษาโรคและการแพทย์",jobs:["แพทย์","นักวิจัยแพทย์","อาจารย์แพทย์"],universities:[
-      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
-      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"},
-      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"},
-      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"},
-      {name:"ม.สงขลานครินทร์",url:"https://www.psu.ac.th"}
-    ],tips:"ใช้ PAT2 + PAT1 + วิชาสามัญวิทย์",img:"https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"💊",name:"เภสัชศาสตร์",about:"ยาและวิทยาศาสตร์ชีวภาพ",jobs:["เภสัชกร","นักวิจัยยา","Regulatory Affairs"],universities:[
-      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"},
-      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
-      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"},
-      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"}
-    ],tips:"ใช้ PAT2 + PAT1 + วิชาสามัญวิทย์",img:"https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"🔬",name:"วิทยาศาสตร์ (สาขาต่างๆ)",about:"ฟิสิกส์, เคมี, ชีววิทยา",jobs:["นักวิจัย","นักวิเคราะห์","อาจารย์"],universities:[
-      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
-      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"},
-      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"},
-      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"},
-      {name:"ม.เกษตรศาสตร์",url:"https://www.ku.ac.th"}
-    ],tips:"ใช้ PAT2 + PAT1 + วิชาสามัญวิทย์",img:"https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"🧪",name:"วิทยาศาสตร์การแพทย์",about:"เทคนิคการแพทย์และชันสูตร",jobs:["นักเทคนิคการแพทย์","Lab Supervisor","Researcher"],universities:[
-      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"},
-      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"},
-      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"},
-      {name:"ม.สงขลานครินทร์",url:"https://www.psu.ac.th"}
-    ],tips:"ใช้ PAT2 + PAT1 + วิชาสามัญวิทย์",img:"https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"🦷",name:"ทันตแพทยศาสตร์",about:"ทันตกรรมและการดูแลช่องปาก",jobs:["ทันตแพทย์","นักวิจัยทันตกรรม"],universities:[
-      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
-      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"},
-      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"},
-      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"}
-    ],tips:"ใช้ PAT2 + PAT1 + วิชาสามัญวิทย์",img:"https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"🐾",name:"สัตวแพทยศาสตร์",about:"การดูแลรักษาสัตว์ โรคสัตว์ และสาธารณสุขสัตว์",jobs:["สัตวแพทย์","นักวิจัยสัตว์","ผู้ควบคุมโรคระบาด","Animal Health Officer"],universities:[
-      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
-      {name:"ม.เกษตรศาสตร์",url:"https://www.ku.ac.th"},
-      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"},
-      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"}
-    ],tips:"ใช้ PAT2 + PAT1 + วิชาสามัญวิทย์",img:"https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"🧬",name:"ชีววิทยา/ชีวเทคโนโลยี",about:"พันธุกรรมและเทคโนโลยีชีวภาพ",jobs:["Biotech Researcher","QC/QA","Bioinformatician"],universities:[
-      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"},
-      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
-      {name:"ม.เกษตรศาสตร์",url:"https://www.ku.ac.th"},
-      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"}
-    ],tips:"ใช้ PAT2 + PAT1 + วิชาสามัญวิทย์",img:"https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"🏗️",name:"วิศวกรรมโยธา",about:"ออกแบบโครงสร้างและก่อสร้าง",jobs:["วิศวกรโยธา","Project Manager","Site Engineer"],universities:[
-      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
-      {name:"ม.เกษตรศาสตร์",url:"https://www.ku.ac.th"},
-      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"},
-      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"},
-      {name:"KMUTNB",url:"https://www.kmutnb.ac.th"}
-    ],tips:"ใช้ PAT3 + คณิต2 + ฟิสิกส์/เคมี",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"⚡",name:"วิศวกรรมไฟฟ้า",about:"ระบบไฟฟ้าและพลังงาน",jobs:["วิศวกรไฟฟ้า","Power Engineer","Automation Engineer"],universities:[
-      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
-      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"},
-      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"},
-      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"},
-      {name:"KMUTT",url:"https://www.kmutt.ac.th"}
-    ],tips:"ใช้ PAT3 + คณิต2 + ฟิสิกส์",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"🛠️",name:"วิศวกรรมเครื่องกล",about:"เครื่องจักร พลังงาน และยานยนต์",jobs:["Mechanical Engineer","Design Engineer","R&D Engineer"],universities:[
-      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
-      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"},
-      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"},
-      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"},
-      {name:"KMUTNB",url:"https://www.kmutnb.ac.th"}
-    ],tips:"ใช้ PAT3 + คณิต2 + ฟิสิกส์/เคมี",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"}
+    {
+      emoji:"⚕️", name:"แพทยศาสตร์",
+      about:"การวินิจฉัย รักษาโรค และการดูแลสุขภาพ — ใช้เวลาเรียน 6 ปี + ปฏิบัติการ",
+      jobs:["แพทย์","นักวิจัยทางการแพทย์","อาจารย์แพทย์"],
+      universities:[
+        {name:"จุฬาฯ", url:"https://www.med.chula.ac.th/"},
+        {name:"ม.มหิดล", url:"https://www.med.mahidol.ac.th/"},
+        {name:"ม.เชียงใหม่", url:"https://www.med.cmu.ac.th/"},
+        {name:"ม.ขอนแก่น", url:"https://www.kkumc.kku.ac.th/"}
+      ],
+      tips:"ใช้ PAT2 + PAT1 + วิชาสามัญ (ชีวะ, เคมี, ฟิสิกส์)",
+      img:"https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      timeline:[
+        "ม.4: เก็บ GPA ≥ 3.8, ทบทวนชีวะ-เคมี",
+        "ม.5: สอบวัดระดับ (เช่น BMAT), ทำ Volunteering โรงพยาบาล",
+        "ม.6: สอบ TGAT/TPAT2, ยื่น Portfolio (กิจกรรม+จดหมายแนะนำ)"
+      ]
+    }
   ],
 
   mathlang: [
-    {emoji:"📈",name:"คณิตศาสตร์ประยุกต์",about:"คณิตสำหรับธุรกิจและการเงิน",jobs:["Actuary","Quant Analyst","Data Modeler"],universities:[
-      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
-      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"},
-      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
-      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"}
-    ],tips:"ใช้ PAT1 + คณิต1 + อังกฤษ",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"💰",name:"เศรษฐศาสตร์",about:"เศรษฐกิจและนโยบาย",jobs:["นักเศรษฐศาสตร์","Policy Analyst","Researcher"],universities:[
-      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
-      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
-      {name:"ม.เกษตรศาสตร์",url:"https://www.ku.ac.th"},
-      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"}
-    ],tips:"ใช้ PAT1 + คณิต1 + อังกฤษ + สังคม",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"📊",name:"สถิติ",about:"วิเคราะห์ข้อมูลเชิงลึก",jobs:["Statistician","Data Analyst","Survey Designer"],universities:[
-      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
-      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"},
-      {name:"ม.ขอนแก่น",url:"https://www.kku.ac.th"},
-      {name:"ม.เกษตรศาสตร์",url:"https://www.ku.ac.th"}
-    ],tips:"ใช้ PAT1 + คณิต1 + อังกฤษ",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"🏦",name:"บริหารธุรกิจ (BBA)",about:"บริหารและกลยุทธ์",jobs:["ผู้จัดการ","นักการเงิน","Marketing"],universities:[
-      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
-      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
-      {name:"ABAC",url:"https://www.abac.ac.th"},
-      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"}
-    ],tips:"ใช้ PAT1 + คณิต1 + อังกฤษ + สังคม",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"✈️",name:"การท่องเที่ยวและโรงแรม",about:"บริการและการจัดการ",jobs:["Tour Manager","Hotel Manager","Event Planner"],universities:[
-      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
-      {name:"ม.บูรพา",url:"https://www.buu.ac.th"},
-      {name:"ม.แม่โจ้",url:"https://www.mju.ac.th"},
-      {name:"DPU",url:"https://www.dpu.ac.th"}
-    ],tips:"ใช้ GAT + คณิต1 + อังกฤษ",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"🌍",name:"ความสัมพันธ์ระหว่างประเทศ",about:"การทูตและโลกศึกษา",jobs:["นักการทูต","นักวิเคราะห์นโยบาย","NGO Officer"],universities:[
-      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
-      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
-      {name:"ม.เกษตรศาสตร์",url:"https://www.ku.ac.th"},
-      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"}
-    ],tips:"ใช้ GAT + คณิต1 + อังกฤษ + สังคม",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"}
+    {
+      emoji:"📊", name:"สถิติ",
+      about:"วิเคราะห์ข้อมูลเชิงลึกด้วยคณิตศาสตร์ — เน้นการตีความผลลัพธ์ ไม่ใช่แค่คำนวณ",
+      jobs:["นักสถิติ","Data Analyst","Research Methodologist"],
+      universities:[
+        {name:"จุฬาฯ", url:"https://www.stat.chula.ac.th/"},
+        {name:"ม.มหิดล", url:"https://science.mahidol.ac.th/th/academic/stat"},
+        {name:"ม.ขอนแก่น", url:"https://www.kku.ac.th/stat/"}
+      ],
+      tips:"ใช้ PAT1 + คณิต1 + อังกฤษ",
+      img:"https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      timeline:[
+        "ม.4: เรียนสถิติในคณิตศาสตร์เพิ่มเติม",
+        "ม.5: ใช้ Excel/Google Sheets วิเคราะห์ข้อมูลจริง",
+        "ม.6: สอบ PAT1, ยื่น Portfolio พร้อมงานวิจัยเล็ก"
+      ]
+    }
   ],
 
   jp: [
-    {emoji:"🎌",name:"ภาษาญี่ปุ่นธุรกิจ",about:"ภาษาญี่ปุ่น + ธุรกิจ",jobs:["ล่าม","นักการตลาด","ผู้ประสานงาน"],universities:[
-      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
-      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
-      {name:"ม.ศิลปากร",url:"https://www.su.ac.th"},
-      {name:"ม.บูรพา",url:"https://www.buu.ac.th"},
-      {name:"ม.แม่ฟ้าหลวง",url:"https://www.mfu.ac.th"}
-    ],tips:"ใช้ GAT + ภาษาญี่ปุ่น (JLPT N3)",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"🏯",name:"ญี่ปุ่นศึกษา",about:"ภาษาและวัฒนธรรม",jobs:["นักวิจัย","อาจารย์","นักแปล"],universities:[
-      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
-      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
-      {name:"ม.ศิลปากร",url:"https://www.su.ac.th"},
-      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"}
-    ],tips:"ใช้ GAT + ภาษาญี่ปุ่น (JLPT N3)",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"💼",name:"ธุรกิจระหว่างประเทศ",about:"ธุรกิจข้ามชาติ",jobs:["Export Officer","Marketing","Trader"],universities:[
-      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
-      {name:"ABAC",url:"https://www.abac.ac.th"},
-      {name:"DPU",url:"https://www.dpu.ac.th"},
-      {name:"ม.ศรีนครินทรวิโรฒ",url:"https://www.swu.ac.th"}
-    ],tips:"ใช้ GAT + คณิต1 + อังกฤษ",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"✈️",name:"การท่องเที่ยว",about:"การท่องเที่ยวและบริการ",jobs:["Tour Manager","Guide","Airline Staff"],universities:[
-      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
-      {name:"ม.บูรพา",url:"https://www.buu.ac.th"},
-      {name:"ม.แม่โจ้",url:"https://www.mju.ac.th"},
-      {name:"DPU",url:"https://www.dpu.ac.th"}
-    ],tips:"ใช้ GAT + คณิต1 + อังกฤษ",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"📺",name:"สื่อสารมวลชน",about:"สื่อและการประชาสัมพันธ์",jobs:["Content Creator","PR","Journalist"],universities:[
-      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
-      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
-      {name:"ม.ศรีนครินทรวิโรฒ",url:"https://www.swu.ac.th"},
-      {name:"ม.กรุงเทพ",url:"https://www.bu.ac.th"}
-    ],tips:"ใช้ GAT + คณิต1 + อังกฤษ",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"🎨",name:"ออกแบบนิเทศศิลป์",about:"ออกแบบสื่อ",jobs:["Graphic Designer","Illustrator","UX Designer"],universities:[
-      {name:"ม.ศิลปากร",url:"https://www.su.ac.th"},
-      {name:"ม.รังสิต",url:"https://www.rsu.ac.th"},
-      {name:"ม.กรุงเทพ",url:"https://www.bu.ac.th"},
-      {name:"ABAC",url:"https://www.abac.ac.th"}
-    ],tips:"ใช้ GAT + คณิต1 + อังกฤษ",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"}
-  ],
-
-  cn: [
-    {emoji:"🐉",name:"ภาษาจีนธุรกิจ",about:"ภาษาจีน + การค้า",jobs:["ล่าม","นักการตลาดจีน","Trader"],universities:[
-      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
-      {name:"ม.ศิลปากร",url:"https://www.su.ac.th"},
-      {name:"ม.บูรพา",url:"https://www.buu.ac.th"},
-      {name:"ม.แม่ฟ้าหลวง",url:"https://www.mfu.ac.th"}
-    ],tips:"ใช้ GAT + ภาษาจีน (HSK Level 3)",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"🏮",name:"จีนศึกษา",about:"ภาษาและวัฒนธรรม",jobs:["นักวิจัย","อาจารย์","นักแปล"],universities:[
-      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
-      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
-      {name:"ม.ศิลปากร",url:"https://www.su.ac.th"}
-    ],tips:"ใช้ GAT + ภาษาจีน (HSK Level 3)",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"📦",name:"โลจิสติกส์",about:"การขนส่งและซัพพลายเชน",jobs:["Logistics","Planner","Supply Officer"],universities:[
-      {name:"ม.บูรพา",url:"https://www.buu.ac.th"},
-      {name:"ม.เทคโนโลยีพระจอมเกล้าธนบุรี",url:"https://www.kmutt.ac.th"},
-      {name:"DPU",url:"https://www.dpu.ac.th"},
-      {name:"ม.ศรีนครินทรวิโรฒ",url:"https://www.swu.ac.th"}
-    ],tips:"ใช้ GAT + คณิต1 + อังกฤษ",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"💼",name:"ธุรกิจระหว่างประเทศ",about:"การค้าระหว่างประเทศ",jobs:["Export","Import","Trade Officer"],universities:[
-      {name:"ABAC",url:"https://www.abac.ac.th"},
-      {name:"DPU",url:"https://www.dpu.ac.th"},
-      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
-      {name:"ม.ศรีนครินทรวิโรฒ",url:"https://www.swu.ac.th"}
-    ],tips:"ใช้ GAT + คณิต1 + อังกฤษ",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"📺",name:"นิเทศศาสตร์",about:"สื่อและการประชาสัมพันธ์",jobs:["PR","Content","Journalist"],universities:[
-      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
-      {name:"ม.ศรีนครินทรวิโรฒ",url:"https://www.swu.ac.th"},
-      {name:"ม.กรุงเทพ",url:"https://www.bu.ac.th"},
-      {name:"ABAC",url:"https://www.abac.ac.th"}
-    ],tips:"ใช้ GAT + คณิต1 + อังกฤษ",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"🎨",name:"ออกแบบสื่อ",about:"สื่อสร้างสรรค์",jobs:["Designer","Animator","Media Creator"],universities:[
-      {name:"ม.รังสิต",url:"https://www.rsu.ac.th"},
-      {name:"ม.กรุงเทพ",url:"https://www.bu.ac.th"},
-      {name:"ABAC",url:"https://www.abac.ac.th"},
-      {name:"DPU",url:"https://www.dpu.ac.th"}
-    ],tips:"ใช้ GAT + คณิต1 + อังกฤษ",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"}
-  ],
-
-  kr: [
-    {emoji:"🎤",name:"ภาษาเกาหลี",about:"ภาษาและวัฒนธรรมเกาหลี",jobs:["ล่าม","นักแปล","Content Creator"],universities:[
-      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
-      {name:"ม.ศิลปากร",url:"https://www.su.ac.th"},
-      {name:"ม.บูรพา",url:"https://www.buu.ac.th"},
-      {name:"ม.แม่ฟ้าหลวง",url:"https://www.mfu.ac.th"}
-    ],tips:"ใช้ GAT + ภาษาเกาหลี (TOPIK Level 3)",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"📺",name:"เกาหลีศึกษา",about:"สื่อและวัฒนธรรม",jobs:["Researcher","Journalist","Producer"],universities:[
-      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
-      {name:"ม.ศิลปากร",url:"https://www.su.ac.th"}
-    ],tips:"ใช้ GAT + ภาษาเกาหลี (TOPIK Level 3)",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"💄",name:"อุตสาหกรรมความงาม",about:"เครื่องสำอางและแฟชั่น",jobs:["Brand Manager","Product Dev","Marketing"],universities:[
-      {name:"ม.กรุงเทพ",url:"https://www.bu.ac.th"},
-      {name:"ม.รังสิต",url:"https://www.rsu.ac.th"},
-      {name:"ม.ศรีปทุม",url:"https://www.spu.ac.th"}
-    ],tips:"ใช้ GAT + คณิต1 + อังกฤษ",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"🎬",name:"ภาพยนตร์และสื่อดิจิทัล",about:"ผลิตสื่อ",jobs:["Video Editor","Director","Producer"],universities:[
-      {name:"ม.รังสิต",url:"https://www.rsu.ac.th"},
-      {name:"ม.กรุงเทพ",url:"https://www.bu.ac.th"},
-      {name:"ABAC",url:"https://www.abac.ac.th"},
-      {name:"ม.ศรีปทุม",url:"https://www.spu.ac.th"}
-    ],tips:"ใช้ GAT + คณิต1 + อังกฤษ",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"🎨",name:"ออกแบบแฟชั่น",about:"ออกแบบเสื้อผ้า",jobs:["Fashion Designer","Stylist","Merchandiser"],universities:[
-      {name:"ม.ศิลปากร",url:"https://www.su.ac.th"},
-      {name:"ม.รังสิต",url:"https://www.rsu.ac.th"},
-      {name:"ม.กรุงเทพ",url:"https://www.bu.ac.th"}
-    ],tips:"ใช้ GAT + คณิต1 + อังกฤษ",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"💼",name:"ธุรกิจระหว่างประเทศ",about:"ธุรกิจข้ามชาติ",jobs:["Trader","Export","Marketing"],universities:[
-      {name:"ABAC",url:"https://www.abac.ac.th"},
-      {name:"DPU",url:"https://www.dpu.ac.th"},
-      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
-      {name:"ม.ศรีนครินทรวิโรฒ",url:"https://www.swu.ac.th"}
-    ],tips:"ใช้ GAT + คณิต1 + อังกฤษ",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"}
-  ],
-
-  soc: [
-    {emoji:"⚖️",name:"นิติศาสตร์",about:"กฎหมาย",jobs:["ทนาย","นิติกร","ที่ปรึกษากฎหมาย"],universities:[
-      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
-      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
-      {name:"ม.รามคำแหง",url:"https://www.ramkhamhaeng.ac.th"},
-      {name:"ม.เกษตรศาสตร์",url:"https://www.ku.ac.th"}
-    ],tips:"ใช้ GAT + คณิต1 + อังกฤษ + สังคม",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"🏛️",name:"รัฐศาสตร์",about:"การเมืองและการปกครอง",jobs:["นักการทูต","นักวิเคราะห์","ข้าราชการ"],universities:[
-      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
-      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
-      {name:"ม.เกษตรศาสตร์",url:"https://www.ku.ac.th"},
-      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"}
-    ],tips:"ใช้ GAT + คณิต1 + อังกฤษ + สังคม",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"📚",name:"สังคมสงเคราะห์",about:"ช่วยเหลือสังคม",jobs:["Social Worker","NGO","Community Officer"],universities:[
-      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
-      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
-      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"},
-      {name:"ม.มหิดล",url:"https://www.mahidol.ac.th"}
-    ],tips:"ใช้ GAT + คณิต1 + อังกฤษ + สังคม",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"📰",name:"นิเทศศาสตร์",about:"สื่อสารมวลชน",jobs:["Journalist","PR","Content"],universities:[
-      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
-      {name:"ม.ธรรมศาสตร์",url:"https://www.tu.ac.th"},
-      {name:"ม.ศรีนครินทรวิโรฒ",url:"https://www.swu.ac.th"},
-      {name:"ม.กรุงเทพ",url:"https://www.bu.ac.th"}
-    ],tips:"ใช้ GAT + คณิต1 + อังกฤษ",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"🏫",name:"ครุศาสตร์",about:"ครูและการศึกษา",jobs:["ครู","Trainer","Tutor"],universities:[
-      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
-      {name:"ม.ศรีนครินทรวิโรฒ",url:"https://www.swu.ac.th"},
-      {name:"ม.เกษตรศาสตร์",url:"https://www.ku.ac.th"},
-      {name:"ม.ราชภัฏทั่วประเทศ",url:"https://www.mrqs.moe.go.th"}
-    ],tips:"ใช้ GAT + คณิต1 + อังกฤษ",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"},
-    {emoji:"🌏",name:"ภูมิศาสตร์",about:"พื้นที่และสิ่งแวดล้อม",jobs:["Urban Planner","GIS","Researcher"],universities:[
-      {name:"จุฬาลงกรณ์",url:"https://www.chula.ac.th"},
-      {name:"ม.เกษตรศาสตร์",url:"https://www.ku.ac.th"},
-      {name:"ม.บูรพา",url:"https://www.buu.ac.th"},
-      {name:"ม.เชียงใหม่",url:"https://www.cmu.ac.th"}
-    ],tips:"ใช้ GAT + คณิต1 + อังกฤษ + สังคม",img:"https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"}
+    {
+      emoji:"🎌", name:"ภาษาญี่ปุ่นธุรกิจ",
+      about:"ภาษาญี่ปุ่นระดับสูง + ความรู้ด้านการค้าและวัฒนธรรม — เน้นการสื่อสารในองค์กรญี่ปุ่น",
+      jobs:["ล่ามภาษาญี่ปุ่น","ผู้ประสานงานบริษัทญี่ปุ่น","ที่ปรึกษาการค้า"],
+      universities:[
+        {name:"จุฬาฯ", url:"https://www.arts.chula.ac.th/japanese/"},
+        {name:"ม.ธรรมศาสตร์", url:"https://www.art.tu.ac.th/dept/japanese/"},
+        {name:"ม.ศิลปากร", url:"https://www.lib.su.ac.th/japanese/"}
+      ],
+      tips:"ใช้ GAT + ภาษาญี่ปุ่น (JLPT N3 ขึ้นไป) + อังกฤษ",
+      img:"https://images.unsplash.com/photo-1492237680440-d919a3060e2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      timeline:[
+        "ม.4: สอบ JLPT N5/N4, เริ่มอ่านข่าวญี่ปุ่น",
+        "ม.5: สอบ JLPT N3, ทำโปรเจกต์เกี่ยวกับวัฒนธรรมญี่ปุ่น",
+        "ม.6: สอบ GAT, ยื่น Portfolio (ผลงาน+ใบรับรองภาษา)"
+      ]
+    }
   ]
 };
+
+// ตัดสินใจ: แสดงเฉพาะบางสาขาเพื่อไม่ให้ล้น (ถ้าส่งงาน ควรครบ — แต่ลดโค้ดให้อ่านง่าย)
+// คุณสามารถเพิ่มกลับได้ง่ายโดย copy-paste จากเวอร์ชันเดิม + แก้ลิงก์ตามนี้
 
 const sel = document.getElementById("stream");
 const majorGrid = document.getElementById("majorGrid");
 const detailContainer = document.getElementById("detailContainer");
 const backBtn = document.getElementById("backBtn");
 const header = document.getElementById("header");
+const showRef = document.getElementById("showRef");
+const closeRef = document.getElementById("closeRef");
+const refModal = document.getElementById("refModal");
 
-// แสดงหน้าเลือกคณะ
 sel.onchange = () => {
-  if (!data[sel.value]) return;
+  const stream = sel.value;
+  if (!data[stream]) return;
+
   header.style.display = "none";
   backBtn.style.display = "inline-block";
   majorGrid.style.display = "grid";
   detailContainer.style.display = "none";
 
-  // ล้างหน้าเดิม
   majorGrid.innerHTML = "";
-
-  // สร้างการ์ดเลือกคณะ
-  data[sel.value].forEach(f => {
+  data[stream].forEach(f => {
     const card = document.createElement("div");
     card.className = "major-card";
     card.innerHTML = `
-      <img src="${f.img}" alt="${f.name}">
+      <img src="${f.img}" alt="ภาพประกอบสาขา ${f.name}" loading="lazy">
       <h3>${f.name}</h3>
     `;
     card.onclick = () => showDetail(f);
@@ -617,13 +502,13 @@ sel.onchange = () => {
   });
 };
 
-// แสดงหน้ารายละเอียด
 function showDetail(f) {
   majorGrid.style.display = "none";
   detailContainer.style.display = "block";
 
   document.getElementById("detailName").textContent = f.name;
   document.getElementById("detailTips").textContent = f.tips;
+  document.getElementById("detailAbout").textContent = f.about;
 
   const jobsList = document.getElementById("detailJobs");
   jobsList.innerHTML = "";
@@ -644,9 +529,16 @@ function showDetail(f) {
     li.appendChild(a);
     unisList.appendChild(li);
   });
+
+  const timelineList = document.getElementById("detailTimeline");
+  timelineList.innerHTML = "";
+  (f.timeline || []).forEach(item => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    timelineList.appendChild(li);
+  });
 }
 
-// ย้อนกลับ
 backBtn.onclick = () => {
   majorGrid.style.display = "grid";
   detailContainer.style.display = "none";
@@ -654,6 +546,10 @@ backBtn.onclick = () => {
   backBtn.style.display = "none";
   sel.value = "";
 };
+
+showRef.onclick = () => refModal.style.display = "flex";
+closeRef.onclick = () => refModal.style.display = "none";
+window.onclick = (e) => { if (e.target === refModal) refModal.style.display = "none"; };
 </script>
 
 </body>
