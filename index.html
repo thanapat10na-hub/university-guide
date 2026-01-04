@@ -4,89 +4,78 @@
   <meta charset="UTF-8">
   <title>🎓 University Guide for High School</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="คู่มือเลือกเรียนต่อมหาวิทยาลัยสำหรับนักเรียนม.ปลาย — 64 สาขา 8 สายการเรียน">
   <link rel="icon" href="image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>" type="image/svg+xml">
-  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=IBM+Plex+Sans+Thai:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary: #0d9488;
       --primary-dark: #0b7a70;
-      --light-bg: #f8fafc;
-      --card-shadow: 0 6px 16px rgba(0,0,0,0.06);
-      --hover-shadow: 0 12px 28px rgba(0,0,0,0.12);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'Sarabun', 'IBM Plex Sans Thai', sans-serif;
-      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      font-family: 'Sarabun', sans-serif;
+      background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
       color: #1e293b;
-      line-height: 1.6;
       padding: 16px;
       text-align: center;
     }
 
     header {
-      background: linear-gradient(120deg, #0d9488, #0b7a70);
+      background: linear-gradient(120deg, var(--primary), var(--primary-dark));
       color: white;
-      padding: 28px 20px;
+      padding: 24px 20px;
       border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(13,148,136,0.25);
-      max-width: 720px;
+      box-shadow: 0 6px 16px rgba(13,148,136,0.2);
+      max-width: 600px;
       margin: 0 auto 24px;
     }
 
     h1 {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      font-size: 1.9em;
+      font-size: 1.8em;
       font-weight: 700;
-      margin: 0 0 12px;
+      margin: 0;
     }
 
     select {
-      padding: 13px 20px;
+      padding: 12px 18px;
       font-size: 17px;
       border-radius: 50px;
-      border: 2px solid #0b7a70;
+      border: 2px solid var(--primary-dark);
       background: #ecfdf5;
       color: #065f46;
       font-weight: 600;
       cursor: pointer;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.06);
-      width: 92%;
-      max-width: 420px;
+      width: 90%;
+      max-width: 380px;
       font-family: inherit;
     }
 
     .back {
       margin: 20px auto;
       display: none;
-      background: linear-gradient(to right, #0d9488, #0b7a70);
+      background: linear-gradient(to right, var(--primary), var(--primary-dark));
       color: white;
       border: none;
-      padding: 11px 24px;
+      padding: 10px 22px;
       border-radius: 50px;
       font-size: 16px;
       font-weight: 600;
-      box-shadow: 0 4px 12px rgba(13,148,136,0.3);
+      box-shadow: 0 4px 10px rgba(13,148,136,0.3);
       cursor: pointer;
-      transition: all 0.3s;
     }
 
     .back:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(13,148,136,0.4);
+      box-shadow: 0 6px 14px rgba(13,148,136,0.4);
     }
 
-    /* ✅ แถวละ 4 บน desktop, 2 บน mobile */
+    /* ✅ แถวละ 4 (desktop) / 2 (mobile) — ไม่มี animation อัตโนมัติ */
     .major-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+      gap: 18px;
       margin-top: 16px;
     }
 
@@ -97,23 +86,25 @@
     }
 
     .major-card {
-      background: #fff;
+      background: white;
       padding: 16px 10px;
       border-radius: 16px;
-      box-shadow: var(--card-shadow);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
       text-align: center;
       cursor: pointer;
       border: 1px solid #e2e8f0;
-      transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+      /* ✅ ไม่มี transition อัตโนมัติ — เฉพาะเมื่อ hover */
+      transition: none;
       position: relative;
       overflow: hidden;
-      will-change: transform;
     }
 
+    /* ✅ เด้งเฉพาะเมื่อชี้เมาส์จริง */
     .major-card:hover {
-      transform: translateY(-6px) scale(1.02);
-      box-shadow: var(--hover-shadow);
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.12);
       border-color: #cbd5e1;
+      transition: transform 0.3s cubic-bezier(0.23,1,0.32,1), box-shadow 0.3s;
     }
 
     .major-card::before {
@@ -123,13 +114,13 @@
       right: 10px;
       font-size: 24px;
       opacity: 0.3;
-      transition: all 0.3s;
     }
 
     .major-card:hover::before {
       top: -12px;
-      opacity: 0.7;
+      opacity: 0.8;
       transform: scale(1.2);
+      transition: all 0.3s;
     }
 
     .major-card img {
@@ -138,6 +129,8 @@
       object-fit: cover;
       border-radius: 10px;
       margin-bottom: 12px;
+      /* fallback background หากโหลดรูปไม่ทัน */
+      background: linear-gradient(135deg, #e0f2ff, #ecfeff);
     }
 
     .major-card h3 {
@@ -149,24 +142,29 @@
 
     .detail-container {
       display: none;
-      max-width: 900px;
+      max-width: 800px;
       margin: 24px auto;
       padding: 24px;
-      background: #fff;
+      background: white;
       border-radius: 20px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-      border: 1px solid #e2e8f0;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
     }
 
     .detail-header {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: 1fr;
       gap: 20px;
       margin-bottom: 24px;
     }
 
+    @media (min-width: 768px) {
+      .detail-header {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
     .detail-box {
-      background: var(--light-bg);
+      background: #f8fafc;
       border: 2px solid #e2e8f0;
       padding: 20px;
       border-radius: 14px;
@@ -179,31 +177,15 @@
       font-weight: 700;
     }
 
-    .unilist a {
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    .unilist a:hover {
-      text-decoration: underline;
-    }
-
-    footer {
-      margin-top: 40px;
-      font-size: 0.88em;
-      color: #64748b;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-    }
+    ul { padding-left: 24px; text-align: left; }
+    li { margin-bottom: 6px; }
   </style>
 </head>
 <body>
 
 <header id="header">
   <h1>🎓 University Guide for High School</h1>
-  <p>เลือกสายการเรียน ม.ปลาย เพื่อดูสาขาที่เรียนได้ + มหาวิทยาลัยที่เปิดรับ</p>
+  <!-- ✅ ลบข้อความ "เลือกสายการเรียน..." ออกแล้ว -->
   <select id="stream">
     <option value="">-- เลือกสายการเรียน --</option>
     <option value="eng">⚙️ เตรียมวิศวะ</option>
@@ -234,67 +216,41 @@
   <div class="detail-header">
     <div class="detail-box">
       <h4>อาชีพในอนาคต</h4>
-      <ul id="detailJobs" style="padding-left:20px;margin:0"></ul>
+      <ul id="detailJobs"></ul>
     </div>
     <div class="detail-box">
       <h4>มหาลัยที่เปิดสอน</h4>
-      <ul id="detailUnis" class="unilist" style="padding-left:20px;margin:0"></ul>
+      <ul id="detailUnis"></ul>
     </div>
   </div>
 </div>
 
-<footer>
-  <p>ℹ️ ข้อมูลอัปเดต: มกราคม 2569 | รวบรวมจากเว็บไซต์มหาวิทยาลัยและ TCAS68</p>
-</footer>
-
 <script>
-// ✅ รูปเฉพาะแต่ละคณะ — ไม่ซ้ำกันจริง (URL ต่างกันทุกอัน)
-const images = {
-  // วิศวะ (8)
-  mech: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=400&h=250&fit=crop",
-  elec: "https://images.unsplash.com/photo-1605637033926-9f1e637e8e44?w=400&h=250&fit=crop",
-  civil: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=400&h=250&fit=crop",
-  compeng: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=250&fit=crop",
-  env: "https://images.unsplash.com/photo-1469474947831-7bc6b865e0ba?w=400&h=250&fit=crop",
-  energy: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=400&h=250&fit=crop",
-  indust: "https://images.unsplash.com/photo-1464262847359-06d641c97171?w=400&h=250&fit=crop",
-  mining: "https://images.unsplash.com/photo-1444723121867-7a241cacace9?w=400&h=250&fit=crop",
-  
-  // วิทย์คอม (8)
-  cs: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=250&fit=crop",
-  data: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop",
-  cyber: "https://images.unsplash.com/photo-1544256718-3bcf237f3974?w=400&h=250&fit=crop",
-  ai: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=400&h=250&fit=crop",
-  game: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=400&h=250&fit=crop",
-  it: "https://images.unsplash.com/photo-1471147642081-e198e5b7a8e1?w=400&h=250&fit=crop",
-  softeng: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=250&fit=crop",
-  network: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=250&fit=crop"
-};
+// ✅ SVG fallback ที่สวย + ไม่ error — ใช้แทนรูปที่โหลดไม่ได้
+const fallbackSVG = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250' viewBox='0 0 40 25'%3E%3Crect width='40' height='25' fill='%23e0f2ff'/%3E%3Ccircle cx='20' cy='12.5' r='4' fill='%230d9488' opacity='0.2'/%3E%3Cpath d='M12 10 Q20 6 28 10 Q20 14 12 10 Z' fill='%230b7a70' opacity='0.1'/%3E%3Ctext x='20' y='18' font-size='3' text-anchor='middle' fill='%230d9488' opacity='0.3'%3E🎓%3C/text%3E%3C/svg%3E`;
 
-// ตัวอย่างข้อมูล — 2 สาย (8 คณะ/สาย) เพื่อความกระชับ
-// ✅ ในไฟล์จริงมีครบ 8 สาย × 8 คณะ = 64 คณะ
+// ตัวอย่างข้อมูล — 2 สาย (8 คณะ/สาย)
 const data = {
   eng: [
-    {emoji:"🛠️",name:"วิศวกรรมเครื่องกล",jobs:["วิศวกรเครื่องกล","วิศวกรยานยนต์"],unis:["จุฬาลงกรณ์","ม.ธรรมศาสตร์"],tips:"ใช้ PAT3 + คณิต2 + ฟิสิกส์",img:images.mech},
-    {emoji:"⚡",name:"วิศวกรรมไฟฟ้า",jobs:["วิศวกรไฟฟ้า","Power Engineer"],unis:["จุฬาลงกรณ์","ม.มหิดล"],tips:"ใช้ PAT3 + คณิต2 + ฟิสิกส์",img:images.elec},
-    {emoji:"🏗️",name:"วิศวกรรมโยธา",jobs:["วิศวกรโยธา","Structural Engineer"],unis:["จุฬาลงกรณ์","ม.เกษตรศาสตร์"],tips:"ใช้ PAT3 + คณิต2 + ฟิสิกส์",img:images.civil},
-    {emoji:"💻",name:"วิศวกรรมคอมพิวเตอร์",jobs:["Embedded Engineer","Robotics Engineer"],unis:["จุฬาลงกรณ์","KMITL"],tips:"ใช้ PAT3 + คณิต2 + ฟิสิกส์",img:images.compeng},
-    {emoji:"🌱",name:"วิศวกรรมสิ่งแวดล้อม",jobs:["Environmental Engineer","Consultant"],unis:["จุฬาลงกรณ์","ม.มหิดล"],tips:"ใช้ PAT3 + คณิต2 + เคมี",img:images.env},
-    {emoji:"🔋",name:"วิศวกรรมพลังงาน",jobs:["Energy Engineer","Solar Engineer"],unis:["ม.ธรรมศาสตร์","KMUTT"],tips:"ใช้ PAT3 + คณิต2 + ฟิสิกส์",img:images.energy},
-    {emoji:"🏭",name:"วิศวกรรมอุตสาหการ",jobs:["Production Engineer","Quality Engineer"],unis:["จุฬาลงกรณ์","ม.ขอนแก่น"],tips:"ใช้ PAT3 + คณิต2 + ฟิสิกส์",img:images.indust},
-    {emoji:"⛏️",name:"วิศวกรรมเหมืองแร่",jobs:["Mining Engineer","Safety Officer"],unis:["จุฬาลงกรณ์","ม.เกษตรศาสตร์"],tips:"ใช้ PAT3 + คณิต2 + เคมี",img:images.mining}
+    {emoji:"🛠️",name:"วิศวกรรมเครื่องกล",jobs:["วิศวกรเครื่องกล","วิศวกรยานยนต์"],unis:["จุฬาลงกรณ์","ม.ธรรมศาสตร์"],tips:"ใช้ PAT3 + คณิต2 + ฟิสิกส์"},
+    {emoji:"⚡",name:"วิศวกรรมไฟฟ้า",jobs:["วิศวกรไฟฟ้า","Power Engineer"],unis:["จุฬาลงกรณ์","ม.มหิดล"],tips:"ใช้ PAT3 + คณิต2 + ฟิสิกส์"},
+    {emoji:"🏗️",name:"วิศวกรรมโยธา",jobs:["วิศวกรโยธา","Structural Engineer"],unis:["จุฬาลงกรณ์","ม.เกษตรศาสตร์"],tips:"ใช้ PAT3 + คณิต2 + ฟิสิกส์"},
+    {emoji:"💻",name:"วิศวกรรมคอมพิวเตอร์",jobs:["Embedded Engineer","Robotics Engineer"],unis:["จุฬาลงกรณ์","KMITL"],tips:"ใช้ PAT3 + คณิต2 + ฟิสิกส์"},
+    {emoji:"🌱",name:"วิศวกรรมสิ่งแวดล้อม",jobs:["Environmental Engineer","Consultant"],unis:["จุฬาลงกรณ์","ม.มหิดล"],tips:"ใช้ PAT3 + คณิต2 + เคมี"},
+    {emoji:"🔋",name:"วิศวกรรมพลังงาน",jobs:["Energy Engineer","Solar Engineer"],unis:["ม.ธรรมศาสตร์","KMUTT"],tips:"ใช้ PAT3 + คณิต2 + ฟิสิกส์"},
+    {emoji:"🏭",name:"วิศวกรรมอุตสาหการ",jobs:["Production Engineer","Quality Engineer"],unis:["จุฬาลงกรณ์","ม.ขอนแก่น"],tips:"ใช้ PAT3 + คณิต2 + ฟิสิกส์"},
+    {emoji:"⛏️",name:"วิศวกรรมเหมืองแร่",jobs:["Mining Engineer","Safety Officer"],unis:["จุฬาลงกรณ์","ม.เกษตรศาสตร์"],tips:"ใช้ PAT3 + คณิต2 + เคมี"}
   ],
   cs: [
-    {emoji:"💻",name:"วิทยาการคอมพิวเตอร์",jobs:["Software Engineer","Backend Dev"],unis:["จุฬาลงกรณ์","ม.มหิดล"],tips:"ใช้ PAT1 + คณิต1 + อังกฤษ",img:images.cs},
-    {emoji:"📊",name:"วิทยาการข้อมูล",jobs:["Data Scientist","Data Analyst"],unis:["ม.มหิดล","ม.เชียงใหม่"],tips:"ใช้ PAT1 + คณิต1 + อังกฤษ",img:images.data},
-    {emoji:"🔐",name:"ความปลอดภัยไซเบอร์",jobs:["Cybersecurity","SOC Analyst"],unis:["ม.มหิดล","KMITL"],tips:"ใช้ PAT1 + คณิต1 + อังกฤษ",img:images.cyber},
-    {emoji:"🤖",name:"ปัญญาประดิษฐ์",jobs:["AI Engineer","Researcher"],unis:["ม.มหิดล","จุฬาลงกรณ์"],tips:"ใช้ PAT1 + คณิต1 + อังกฤษ",img:images.ai},
-    {emoji:"🎮",name:"เกมและสื่อดิจิทัล",jobs:["Game Dev","Game Designer"],unis:["ม.ศิลปากร","ม.รังสิต"],tips:"ใช้ PAT1 + คณิต1 + อังกฤษ",img:images.game},
-    {emoji:"🖥️",name:"เทคโนโลยีสารสนเทศ",jobs:["IT Support","System Admin"],unis:["ม.เกษตรศาสตร์","KMUTNB"],tips:"ใช้ PAT1 + คณิต1 + อังกฤษ",img:images.it},
-    {emoji:"📱",name:"วิศวกรรมซอฟต์แวร์",jobs:["Software Engineer","DevOps"],unis:["จุฬาลงกรณ์","KMITL"],tips:"ใช้ PAT1 + คณิต1 + อังกฤษ",img:images.softeng},
-    {emoji:"📡",name:"วิศวกรรมเครือข่าย",jobs:["Network Engineer","Cloud Engineer"],unis:["KMITL","KMUTT"],tips:"ใช้ PAT1 + คณิต1 + อังกฤษ",img:images.network}
+    {emoji:"💻",name:"วิทยาการคอมพิวเตอร์",jobs:["Software Engineer","Backend Dev"],unis:["จุฬาลงกรณ์","ม.มหิดล"],tips:"ใช้ PAT1 + คณิต1 + อังกฤษ"},
+    {emoji:"📊",name:"วิทยาการข้อมูล",jobs:["Data Scientist","Data Analyst"],unis:["ม.มหิดล","ม.เชียงใหม่"],tips:"ใช้ PAT1 + คณิต1 + อังกฤษ"},
+    {emoji:"🔐",name:"ความปลอดภัยไซเบอร์",jobs:["Cybersecurity","SOC Analyst"],unis:["ม.มหิดล","KMITL"],tips:"ใช้ PAT1 + คณิต1 + อังกฤษ"},
+    {emoji:"🤖",name:"ปัญญาประดิษฐ์",jobs:["AI Engineer","Researcher"],unis:["ม.มหิดล","จุฬาลงกรณ์"],tips:"ใช้ PAT1 + คณิต1 + อังกฤษ"},
+    {emoji:"🎮",name:"เกมและสื่อดิจิทัล",jobs:["Game Dev","Game Designer"],unis:["ม.ศิลปากร","ม.รังสิต"],tips:"ใช้ PAT1 + คณิต1 + อังกฤษ"},
+    {emoji:"🖥️",name:"เทคโนโลยีสารสนเทศ",jobs:["IT Support","System Admin"],unis:["ม.เกษตรศาสตร์","KMUTNB"],tips:"ใช้ PAT1 + คณิต1 + อังกฤษ"},
+    {emoji:"📱",name:"วิศวกรรมซอฟต์แวร์",jobs:["Software Engineer","DevOps"],unis:["จุฬาลงกรณ์","KMITL"],tips:"ใช้ PAT1 + คณิต1 + อังกฤษ"},
+    {emoji:"📡",name:"วิศวกรรมเครือข่าย",jobs:["Network Engineer","Cloud Engineer"],unis:["KMITL","KMUTT"],tips:"ใช้ PAT1 + คณิต1 + อังกฤษ"}
   ]
-  // ✅ สายอื่น ๆ (sci, mathlang, jp, cn, kr, soc) มีครบในไฟล์จริง
 };
 
 // DOM
@@ -304,17 +260,16 @@ const detailContainer = document.getElementById("detailContainer");
 const backBtn = document.getElementById("backBtn");
 const header = document.getElementById("header");
 
-// ✅ แก้ปัญหา: เลือกสายซ้ำแล้วไม่ขึ้น
 sel.onchange = () => {
   const stream = sel.value;
   if (!data[stream]) return;
 
-  // ✅ ล้างก่อน render ทุกครั้ง
+  // ✅ ล้างก่อนทุกครั้ง — ป้องกันปัญหาซ้ำ
   majorGrid.innerHTML = "";
   
   header.style.display = "none";
   backBtn.style.display = "inline-block";
-  majorGrid.style.display = "grid"; // ✅ ใช้ display แทน class toggle
+  majorGrid.style.display = "grid";
   detailContainer.style.display = "none";
 
   data[stream].forEach(f => {
@@ -322,8 +277,8 @@ sel.onchange = () => {
     card.className = "major-card";
     card.setAttribute("data-emoji", f.emoji);
     card.innerHTML = `
-      <img src="${f.img}" alt="${f.name}" 
-           onerror="this.src='https://images.unsplash.com/photo-1581092580497?w=400&h=250&fit=crop';">
+      <img src="${fallbackSVG}" alt="${f.name}" 
+           style="background:linear-gradient(135deg,#e0f2ff,#ecfeff);"> <!-- ✅ ใช้ fallback SVG เสมอ -->
       <h3>${f.name}</h3>
     `;
     card.onclick = () => showDetail(f);
@@ -356,14 +311,12 @@ function showDetail(f) {
 }
 
 backBtn.onclick = () => {
-  // ✅ รีเซ็ตทุกอย่างให้กลับสู่สถานะเริ่มต้น
   majorGrid.style.display = "none";
   detailContainer.style.display = "none";
   header.style.display = "block";
   backBtn.style.display = "none";
   sel.value = "";
 };
-
 </script>
 
 </body>
